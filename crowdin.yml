@@ -1,0 +1,5 @@
+files:
+  - source: /lang/hr-HR.json
+    translation: /lang/%locale%.json
+  - source: /lang/notifications-hr-HR.php
+    translation: /lang/notifications-%locale%.php

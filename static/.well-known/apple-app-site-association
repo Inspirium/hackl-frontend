@@ -1,0 +1,11 @@
+{
+  "applinks": {
+    "apps": [],
+    "details": [
+      {
+        "appID": "7YJ44GG5KS.plus.tenis.app",
+        "paths": ["*"]
+      }
+    ]
+  }
+}

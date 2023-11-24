@@ -1,0 +1,195 @@
+// Set your brand colors
+$lightgrey: #eaeff3;
+$lightgrey1: #f6f6f6;
+$active: #e8edf180;
+$black5: #f8f9fb;
+$black10: #EEEEEE;
+$black20: #cccccc;
+$black30: #a1a1a1;
+$black50: #777777;
+$black60: #747474;
+$black80: #444444;
+$black100: #000000;
+$blackblue: #91afc8;
+$blue: #0085b2;
+$lightblue: #209cee;
+$infoblue: #3e8ed0;
+$lightbluelighter: #4bd5ee;
+$bgblue: #b3d9de;
+$is-yellow: #e7f104;
+$secondary: #93c03d;
+$terciar: #73c03d;
+$darkgreen: #64a51c;
+$quater: #E74946;
+$is-danger: #ff3860;
+$is-danger-lighter: rgba(255, 234, 234, 0.5);
+//$clay: #d96d00;
+$clay: #b25900;
+$artificalclay: #dc5c28;
+
+$jedan: #209CEE;
+$dva: #F18F01;
+$tri: #2E4057;
+$cetiri: #99C24D;
+$pet: #29E7CD;
+$sest: #B68CB8;
+$sedam: #314CB6;
+// Update Bulma's global variables
+$primary: $lightblue;
+
+.is-clay, .badge-clay {
+  background-color: $clay!important;
+}
+.badge-acrylic, .badge-concrete-us {
+  background-color: $infoblue;
+}
+.badge-artifical-clay {
+  background-color: $artificalclay!important;
+}
+.is-orange {
+  background-color: $dva!important;
+}
+.is-yellow {
+  background-color: $is-yellow;
+}
+.is-yellow1 {
+  background-color: #FFE08A;
+}
+.is-tirkiz {
+  background-color: #6ecbb5;
+}
+.is-bgblue {
+  background-color: $bgblue;
+}
+.badge-artificial-grass {
+  background-color: $terciar;
+}
+.badge-asphalt {
+  background-color: $black60!important;
+}
+.badge-carpet {
+  background-color: $sest;
+}
+.badge-grass  {
+  background-color: $cetiri;
+}
+
+.button.is-success {
+  background-color: $terciar!important;
+}
+
+
+.is-beton, .badge-concrete, .is-concrete, .is-concrete-us {
+  background-color: $lightblue;
+}
+.is-set {
+  background-color: $black20;
+}
+.is-bckg {
+  background-color: $lightgrey!important;
+}
+.is-bckg1 {
+  background-color: $lightgrey1!important;
+}
+.is-primary {
+  background-color: $lightblue!important;
+}
+.is-infoblue {
+  background-color: $infoblue!important;
+}
+.is-red {
+  background-color: $is-danger!important;
+}
+.is-black-list {
+  background-color: #2e2e2e!important;
+}
+
+.is-red-lighter {
+  background-color: $is-danger-lighter!important;
+}
+.is-light-gray {
+  background-color: $active!important;
+}
+.is-bg-high {
+  background-color: #cfdde9!important;
+}
+.is-primary-lighter {
+  background-color: $lightbluelighter!important;
+}
+.is-black50 {
+  background-color: $black50!important;
+}
+.is-white {
+  background-color: #ffffff!important;
+}
+.is-black10 {
+  background-color: $black10!important;
+}
+.is-black30 {
+  background-color: $black30!important;
+}
+.primary-light {
+  background-color: $lightblue!important;
+}
+.green {
+  background-color: $terciar!important;
+}
+.darkgreen {
+  background-color: #64a51c!important;
+}
+.is-blackblue {
+  background-color: $blackblue!important;
+}
+.has-text-green {
+  color: #77bb1c;
+}
+.has-text-darkgreen {
+  color: $darkgreen;
+}
+.is-darkgreen {
+  background-color: #64a51c;
+}
+.has-text-black20 {
+  color: $black20;
+}
+.has-text-black30 {
+  color: $black30;
+}
+.has-text-black50 {
+  color: $black50;
+}
+.has-text-black80 {
+  color: $black80;
+}
+.has-text-black100 {
+  color: $black100!important;
+}
+.has-text-lightblue {
+  color: $lightblue!important;
+}
+.has-text-infoblue {
+  color: $infoblue;
+}
+.darkgreen {
+  color: $darkgreen;
+}
+
+
+
+.has-text-lightblue {
+  label {
+    color: $lightblue;
+  }
+}
+
+
+
+
+
+.border-white {
+  border-color: #ffffff!important;
+}
+
+.border-radius-0 {
+  border-radius: 0!important;
+}

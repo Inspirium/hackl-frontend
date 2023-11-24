@@ -1,0 +1,211 @@
+<template>
+  <div class="home p-b-150">
+    <PageHeader :title="$t('Narudžbe')" :background="'is-primary'" />
+    <div class="relative">
+      <div v-if="orders.length">
+        <h6 class="fw600 flex align__centar__all m-t-30">
+          {{ $t('Ukupno narudžbi') }}
+          <span>{{ total }}</span>
+        </h6>
+        <div v-for="item in orders" :key="item.id" class="">
+          <div v-if="item.items.length" class="p-l-10 p-r-10">
+            <div v-for="(product, index) in item.items" v-show="index < 1" :key="product.id + index">
+              <div class="order-list is-white radius__16 softshadow overflow-hidden m-b-10">
+                <div class="p-r-15 p-t-15 p-b-10 w100">
+                  <div class="flex justify-between align__centar__y m-b-10 m-t--5 p-l-15">
+                    <h4 class="has-text-black80 fw600 is-size-65">
+                      {{ item.created_at | moment('DD.MM.YYYY. • HH:MM') }}
+                    </h4>
+                    <h4 v-if="item.work_orders.length" class="has-text-black80 fw600 is-size-65 flex align__centar__y">
+                      {{
+                        item.work_orders[0].status === 'pending'
+                          ? $t('U izradi narudžbe')
+                          : item.work_orders[0].status === 'cancelled'
+                          ? $t('Otkazano')
+                          : $t('Završeno')
+                      }}
+                      <font-awesome-icon
+                        class="m-r--5 m-l-5 iw12"
+                        :class="
+                          item.work_orders[0].status === 'pending'
+                            ? 'has-text-primary'
+                            : item.work_orders[0].status === 'cancelled'
+                            ? 'has-text-danger'
+                            : 'has-text-success'
+                        "
+                        :icon="
+                          item.work_orders[0].status === 'pending'
+                            ? 'fa-clock fa-light'
+                            : item.work_orders[0].status === 'cancelled'
+                            ? 'fa-times fa-light'
+                            : 'fa-check fa-light'
+                        "
+                      />
+                    </h4>
+                    <!--                    <h4 v-else class="has-text-black80 fw600 is-size-65 flex align__centar__y">-->
+                    <!--                      {{ $t('Nije plaćeno') }}-->
+                    <!--                      <font-awesome-icon class="m-r&#45;&#45;5 m-l-5 has-text-danger iw12" icon="fa-light fa-times" />-->
+                    <!--                    </h4>-->
+                  </div>
+                  <nuxt-link
+                    v-if="product.product"
+                    :to="localePath('/player/' + $route.params.id + '/orders/' + item.id)"
+                    class="has-text-black50 flex"
+                  >
+                    <template v-if="Object.keys(product.product.main_image).length">
+                      <div class="order-listing-img-box m-b-7 mw40 m-r-15 flex">
+                        <TennisImage
+                          :size="[180, 180]"
+                          :src="product.product.main_image.link"
+                          class="order-listing-img softshadow"
+                        />
+                      </div>
+                    </template>
+
+                    <div class="shop-meta-content flex__column align__centar__x w100">
+                      <div class="fw600 is-size-5 has-text-black80 line-height-14">
+                        {{ item.items[0].product.name
+                        }}<span
+                          v-show="item.items.length > 1"
+                          class="fw600 has-text-lightblue is-size-65 relative top--6"
+                        >
+                          +{{ item.items.length - 1 }}</span
+                        >
+                      </div>
+                      <div class="fw600 is-size-65 has-text-primary m-t-1 p-t-3 p-b-3 flex align__centar__y">
+                        {{ $t('ukupno2') }}
+                        <span class="has-text-black80 is-size-5 m-l-7">{{
+                          $t('key5', { currency: item.total }) | currency
+                        }}</span>
+                      </div>
+                      <div class="fw600 is-size-65 has-text-primary m-t-1 border-color-black10 p-t-5 p-b-5">
+                        {{ $t('Kupac') }}: <span class="has-text-black80">{{ item.buyer.display_name }}</span>
+                      </div>
+                      <div
+                        v-if="item.work_orders.length"
+                        class="fw600 is-size-65 has-text-primary m-t-1 border-color-black10 p-t-5 p-b-5"
+                      >
+                        {{ $t('Obradio') }}:
+                        <span v-if="item.work_orders[0].assigner" class="has-text-black80">{{
+                          item.work_orders[0].assigner.display_name
+                        }}</span>
+                      </div>
+                    </div>
+                  </nuxt-link>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <transition v-if="!orders.length && loading" name="fade">
+        <div class="align__centar__x m-t-30 loading_z_spinner--bottom">
+          <b-icon
+            class="comment-send"
+            custom-class="rotating"
+            icon="spinner"
+            size="is-large"
+            type="is-primary"
+            pack="far"
+          ></b-icon>
+        </div>
+      </transition>
+    </div>
+  </div>
+</template>
+
+<script>
+// import _ from 'lodash'
+import TennisImage from '@/components/TennisImage.vue'
+import PageHeader from '~/components/headers/blankBack'
+import ShopOrder from '~/models/ShopOrder'
+
+export default {
+  name: 'Orders',
+  components: {
+    PageHeader,
+    TennisImage,
+  },
+  data() {
+    return {
+      orders: [],
+      total: 0,
+      bottom: false,
+      last_page: 1,
+      offset: 1,
+      loading: false,
+      tempPay: true,
+      tempOrderStatus: ['pending', 'completed', 'cancelled'],
+      tempOrderStatusSelected: 'pending',
+      isLoaded: false,
+    }
+  },
+  computed: {
+    user() {
+      return this.$store.state.auth.user
+    },
+  },
+  watch: {
+    bottom(bottom) {
+      if (bottom) {
+        this.offset++
+        this.bottom = false
+        this.getOrders()
+      }
+    },
+  },
+  mounted() {
+    window.addEventListener('scroll', () => {
+      this.bottom = this.bottomVisible()
+    })
+    this.getOrders()
+  },
+  methods: {
+    returnBckg(item) {
+      if (!item.work_orders.length) {
+        return ''
+      }
+      if (item.work_orders[0].status === 'pending') {
+        return ''
+      } else if (item.work_orders[0].status === 'completed') {
+        return 'borderTop: 6px solid #73c03d'
+      } else if (item.work_orders[0].status === 'cancelled') {
+        return 'borderTop: 6px solid #E74946'
+      } else {
+        return ''
+      }
+    },
+    getOrders() {
+      if (this.last_page < this.offset) return
+      this.loading = true
+      ShopOrder.include(
+        'creator',
+        'items',
+        'buyer',
+        'items.product',
+        'work_orders',
+        'work_orders.assignee',
+        'work_orders.assigner'
+      )
+        .page(this.offset)
+        .where('club', this.$store.state.club.id)
+        .where('buyer', this.user.id)
+        .get()
+        .then((res) => {
+          if (this.offset === 1) {
+            this.orders = res.data
+          } else {
+            this.orders = [...this.orders, ...res.data]
+          }
+          this.isLoaded = true
+          this.total = res.meta.total
+          this.last_page = res.meta.last_page
+          this.loading = false
+        })
+    },
+    bottomVisible() {
+      return window.innerHeight + window.pageYOffset + 200 >= document.body.offsetHeight
+    },
+  },
+}
+</script>

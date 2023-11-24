@@ -1,0 +1,31 @@
+{
+  "appId": "plus.tenis.app",
+  "appName": "Tenis.plus",
+  "webDir": "dist",
+  "plugins": {
+    "SplashScreen": {
+      "launchShowDuration": 0,
+      "launchAutoHide": true,
+      "backgroundColor": "#00aaf3",
+      "androidSplashResourceName": "splash",
+      "androidScaleType": "CENTER_CROP",
+      "spinnerColor": "#999999",
+      "splashFullScreen": true,
+      "splashImmersive": true,
+      "layoutName": "launch_screen",
+      "useDialog": true
+    },
+    "PushNotifications": {
+      "presentationOptions": ["badge", "sound", "alert"]
+    }
+  },
+  "ios": {
+    "contentInset": "always",
+    "limitsNavigationsToAppBoundDomains": true
+  },
+  "server": {
+    "hostname": "app.tenis.plus",
+    "iosScheme": "tennisplus",
+    "androidScheme": "https"
+  }
+}
