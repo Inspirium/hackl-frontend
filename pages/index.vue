@@ -237,18 +237,20 @@
           {{ showAdmin ? $t('Sakrij administraciju') : $t('Administracija kluba') }}
         </b-button>
       </div>
+      <!--
       <homeMyLiga :key="`myliga-${club.id}`" class="m-b--16"></homeMyLiga>
       <homeSchool :key="`school-${club.id}`" class="m-b-20"></homeSchool>
       <homeWorkorder :key="`workorder-${club.id}`" class="m-b-20"></homeWorkorder>
       <homeOrder :key="`order-${club.id}`" class="m-b-20"></homeOrder>
       <homeReservations :key="`reservations-${club.id}`" class="m-b--16"></homeReservations>
-      <homeMessages :key="`messages-${club.id}`" class="m-t-20"></homeMessages>
+      <homeMessages :key="`messages-${club.id}`" class="m-t-20"></homeMessages>-->
       <homeNews :key="`news-${club.id}`" class=""></homeNews>
-      <!--    <homeServices class="m-b&#45;&#45;16"></homeServices>-->
+    <!--<homeServices class="m-b&#45;&#45;16"></homeServices>-->
 
       <!--<template v-if="false">
         <homeCup :key="`cup-${club.id}`" class="m-b--16"></homeCup>
-      </template>-->
+      </template>
+
       <homeClassified :key="`classified-${club.id}`" class="m-b--16"></homeClassified>
       <homeSponsors class="m-t-15" />
       <homeRankings
@@ -257,7 +259,7 @@
         class="m-b--16"
       ></homeRankings>
       <homeResults :key="`results-${club.id}`" class="m-b--16"></homeResults>
-      <homeSchedule :key="`schedule-${club.id}`" class="m-b--16"></homeSchedule>
+      <homeSchedule :key="`schedule-${club.id}`" class="m-b--16"></homeSchedule>-->
       <!--<homeCups v-if="false" :key="`cups-${club.id}`"></homeCups>-->
       <!--    <template v-if="$store.state.club.id !== 26">-->
       <!--      <b-modal :active.sync="isModalNotif" :width="640" scroll="clip" class="modal-notif">-->
