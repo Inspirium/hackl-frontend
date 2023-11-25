@@ -224,7 +224,6 @@
             </div>
           </div>
 
-
           <!-- Google map -->
           <div v-if="court.id" style="width: 100%;, height: 400px; margin-bottom: 3rem;">
             <GmapMap
