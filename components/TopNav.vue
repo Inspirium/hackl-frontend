@@ -20,13 +20,13 @@
       </div>
     </div>
     <nav class="topnav">
-      <div v-if="user" class="container">
+      <div class="container">
         <div class="cursor" @click="isMenuModalActive = true">
           <img class="hamburger" src="~assets/img/hamburger.svg" alt="" />
         </div>
         <div class="align__centar__all">
           <nuxt-link :to="localePath('/')" class="clubname lh12">{{ $store.state.club.name }}</nuxt-link>
-          <span v-if="user.id === 2" class="m-t-5 m-l-10" @click="isModalMembersActive = true">
+          <span v-if="user && user.id === 2" class="m-t-5 m-l-10" @click="isModalMembersActive = true">
             <font-awesome-icon icon="fa-light fa-chevron-down" class="has-text-black80 iw15"> </font-awesome-icon>
           </span>
         </div>
