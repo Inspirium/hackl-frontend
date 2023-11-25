@@ -364,7 +364,7 @@ export default {
     },
     submitToTopClub() {
       if (Capacitor.getPlatform() === 'web') {
-        window.location.href = `https://hakl.inspirium.hr`
+        window.location.href = `https://hackl.inspirium.hr`
       } else {
         this.$store.commit('club/setId', 26)
         this.$store.dispatch('club/init_club', { force: true })

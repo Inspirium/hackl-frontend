@@ -1,7 +1,7 @@
 import moment from 'moment'
 import Surface from '@/models/Surface'
 export const state = () => ({
-  name: 'Teniski klub',
+  name: 'Mjesni odbor',
   logo: '/logo__login.svg',
   club_loaded: false,
   courts: [],
