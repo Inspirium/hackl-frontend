@@ -77,17 +77,17 @@
             </div>
             <div class="m-t--20">
               <!--Prikaži samo ako je admin objavio prekid igre zbog atmosferlija-->
-              <template v-if="club.canceled !== undefined">
+              <!-- <template v-if="club.canceled !== undefined">
                 <div v-if="club.canceled[selected_date]" class="align__centar__all m-b-15">
                   <b-icon icon="cloud-showers-heavy" pack="fal" type="is-danger" size="is-large" class="m-r-15">
                   </b-icon>
                   <div class="title is-size-4">{{ $t('igraPrekinuta') }}</div>
                 </div>
-              </template>
+              </template>-->
               <!--End-->
               <div v-if="isAdmin && isMemberOfTheClub" class="admin_box m-b-30 m-t-30 p-t-25">
                 <admin-weather-buttons @update="getCourts()"></admin-weather-buttons>
-                <div v-if="user.is_admin" class="buttons">
+                <div v-if="user && user.is_admin" class="buttons">
                   <b-button
                     class="softshadow"
                     type="is-small noborder"
@@ -961,7 +961,7 @@ export default {
       return window.innerWidth
     },
     isMemberOfTheClub() {
-      return !!this.user.club_member[this.club.id]
+      return true
     },
     minDate() {
       return this.isAdmin ? null : new Date(new Date().getFullYear(), new Date().getMonth(), new Date().getDate())

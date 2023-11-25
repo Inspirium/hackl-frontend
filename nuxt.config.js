@@ -88,6 +88,7 @@ export default {
     { src: '~plugins/lang', ssr: false },
     { src: '~plugins/tinymce', ssr: false },
     { src: '~plugins/user' },
+    { src: '~/plugins/vue2-google-maps', ssr: true },
     // { src: '~plugins/vue-apexcharts', ssr: false },
   ],
   /*
@@ -302,7 +303,7 @@ export default {
    */
   build: {
     // Add exception
-    transpile: ['vee-validate/dist/rules'],
+    transpile: ['vee-validate/dist/rules', /^vue2-google-maps($|\/)/],
     // quiet: true,
     /*
      ** You can extend webpack config here

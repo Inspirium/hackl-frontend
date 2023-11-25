@@ -531,7 +531,8 @@ export default {
     },
     redirectToFindClub() {
       if (!this.$store.state.club.id) {
-        this.$router.push(this.localePath('/login/club'))
+        this.$store.dispatch('club/init_club', { force: true })
+        // this.$router.push(this.localePath('/login/club'))
       }
     },
     async registerNotifications() {

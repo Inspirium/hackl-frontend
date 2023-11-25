@@ -177,6 +177,20 @@
           {{ $t('Pretraži') }}
         </b-button>
       </div>
+
+      <!-- Google map -->
+      <div style="width: 100%;, height: 400px;">
+        <GmapMap :center="mapCenter" :zoom="mapZoom" map-type-id="roadmap" style="width: 100%; height: 400px">
+          <GmapMarker
+            v-for="court in freeCourts"
+            :key="court.id"
+            :position="{ lat: parseFloat(court.club.latitude), lng: parseFloat(court.club.longitude) }"
+            :clickable="true"
+            @click="logCourtName(court.club.name)"
+          />
+        </GmapMap>
+      </div>
+
       <div v-if="freeCourtsTotal" class="m-t--10">
         <h6 class="fw600 flex align__centar__all">
           {{ $t('Slobodnih termina') }}:
@@ -410,6 +424,9 @@ export default {
       clientSecret: '',
       showStripe: false,
       selectedTerm: {},
+
+      mapCenter: { lat: 45.815, lng: 15.9819 }, // coordinates for Zagreb, Croatia
+      mapZoom: 11,
     }
   },
   computed: {
@@ -571,6 +588,11 @@ export default {
     this.from = this.$moment().add(2, 'h').format('HH')
     this.to = this.$moment().add(3, 'h').format('HH')
     this.debouncedGetCity()
+
+    // this might be useless (google maps)
+    this.$nextTick(() => {
+      window.dispatchEvent(new Event('resize'))
+    })
   },
   methods: {
     checkIfCourtBreakAdmin(court) {
@@ -758,6 +780,10 @@ export default {
     },
     bottomVisible() {
       return window.innerHeight + window.pageYOffset + 200 >= document.body.offsetHeight
+    },
+
+    logCourtName(courtName) {
+      console.log('Court clicked:', courtName)
     },
   },
   head() {
