@@ -296,62 +296,28 @@ export default {
           link: '/',
         },
         {
-          name: 'rezervacijaTerena',
+          name: 'Prostori',
           image: '/topnav/reservation_1.svg',
           link: '/courts',
         },
         {
-          name: 'igrai',
+          name: 'Korisnici',
           image: '/topnav/players_1.svg',
           link: '/player',
         },
         {
-          name: 'rezultati',
-          image: '/topnav/results_1.svg',
-          link: '/result',
-        },
-        {
-          name: 'rankLjestvica',
-          image: '/topnav/rankings_1.svg',
-          link: '/rankings',
-        },
-        {
-          name: 'najaveMeeva',
+          name: 'Zaprimljene prijave',
           image: '/topnav/schedule_1.svg',
           link: '/schedule',
         },
-        {
-          name: 'lige',
-          image: '/topnav/liga_1.svg',
-          link: '/liga',
-        },
-        {
-          name: 'turniri',
-          image: '/topnav/turnir_1.svg',
-          link: '/cup',
-        },
-        {
-          name: 'parovi',
-          image: '/topnav/doubles_1.svg',
-          link: '/doubles',
-        },
+
         {
           name: 'novosti',
           image: '/topnav/news_1.svg',
           link: '/news',
         },
         {
-          name: 'oglasnik',
-          image: '/topnav/classified_1.svg',
-          link: '/classified',
-        },
-        {
-          name: 'Sponzori kluba',
-          image: '/topnav/sponsors_1.svg',
-          link: `/sponsors`,
-        },
-        {
-          name: 'O klubu',
+          name: 'O gradskom odboru',
           image: `${this.club.logo}`,
           link: `/clubs/${this.club.id}/myclub`,
         },

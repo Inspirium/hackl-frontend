@@ -27,7 +27,7 @@
         <div :class="[activeTab === 2 ? 'active-menu-item' : 'menu-item']" @click="activeTab = 2">
           <div class="has-text-black80 flex flex__column align__centar__y" @click="activeTab = 2">
             <b-icon class="m-b-5" pack="fal" icon="stars" type="is-black50"> </b-icon>
-            <div class="is-size-6 fw600 has-text-centered lh12 m-t-5">{{ $t('posebniTermini') }}</div>
+            <div class="is-size-6 fw600 has-text-centered lh12 m-t-5">{{ $t('Posebna pravila') }}</div>
           </div>
         </div>
       </div>
@@ -66,7 +66,7 @@
           <form @submit.prevent="submit">
             <ValidationProvider v-slot="{ errors, valid }" name="Naziv terena" rules="required">
               <b-field
-                :label="$t('nazivTerena')"
+                :label="$t('Naziv prostora')"
                 class="login__input__container"
                 :type="valid ? 'is-success' : 'is-danger'"
                 :message="errors"
@@ -75,7 +75,26 @@
                 </b-input>
               </b-field>
             </ValidationProvider>
-            <div class="label">{{ $t('terenUFunkciji') }}</div>
+            <ValidationProvider v-slot="{ errors, valid }" name="Naziv terena" rules="required">
+              <b-field
+                :label="$t('Površina')"
+                class="login__input__container"
+                :type="valid ? 'is-success' : 'is-danger'"
+                :message="errors"
+              >
+                <b-input
+                  v-model="court.size"
+                  size="is-medium"
+                  :placeholder="$t('Upiši kvadraturu u m2')"
+                  type="number"
+                  rounded
+                >
+                </b-input>
+              </b-field>
+            </ValidationProvider>
+            <div class="label">{{ $t('opis') }}</div>
+            <tinymce-editor v-model="court.description" class="" />
+            <div class="label">{{ $t('Prostor u funkciji') }}</div>
             <ValidationProvider v-slot="{ errors, valid }" name="Funkcija" class="radio__box" rules="required">
               <div class="block">
                 <b-radio
@@ -96,7 +115,7 @@
                 </b-radio>
               </div>
             </ValidationProvider>
-            <div class="label">{{ $t('Teren mogu rezervirati članovi') }}</div>
+            <div class="label">{{ $t('Prostor može rezervirati korisnici') }}</div>
             <ValidationProvider v-slot="{ errors, valid }" name="Rezervacija" class="radio__box" rules="required">
               <div class="block">
                 <b-radio
@@ -117,30 +136,80 @@
                 </b-radio>
               </div>
             </ValidationProvider>
-            <div class="label">{{ $t('vrstaTerena') }}</div>
+
+            <div class="label">{{ $t('Klima') }}</div>
             <ValidationProvider v-slot="{ errors, valid }" name="Vrsta terena" class="radio__box">
               <div class="block">
                 <b-radio
-                  v-model="court.type"
+                  v-model="court.airconditioner"
                   :type="valid ? 'is-success' : 'is-danger'"
                   :message="errors"
                   native-value="open"
                   rules="required"
                 >
-                  {{ $t('vanjskiTeren') }}
+                  {{ $t('da') }}
                 </b-radio>
                 <b-radio
-                  v-model="court.type"
+                  v-model="court.airconditioner"
                   :type="valid ? 'is-success' : 'is-danger'"
                   :message="errors"
                   native-value="closed"
                   rules="required"
                 >
-                  {{ $t('natkrivenTeren') }}
+                  {{ $t('ne') }}
                 </b-radio>
               </div>
             </ValidationProvider>
-            <div class="label">{{ $t('reflektori') }}</div>
+            <div class="label">{{ $t('Grijanje') }}</div>
+
+            <ValidationProvider v-slot="{ errors, valid }" name="Vrsta terena" class="radio__box">
+              <div class="block">
+                <b-radio
+                  v-model="court.heating"
+                  :type="valid ? 'is-success' : 'is-danger'"
+                  :message="errors"
+                  native-value="open"
+                  rules="required"
+                >
+                  {{ $t('da') }}
+                </b-radio>
+                <b-radio
+                  v-model="court.heating"
+                  :type="valid ? 'is-success' : 'is-danger'"
+                  :message="errors"
+                  native-value="closed"
+                  rules="required"
+                >
+                  {{ $t('ne') }}
+                </b-radio>
+              </div>
+            </ValidationProvider>
+            <div class="label">{{ $t('Wifi') }}</div>
+
+            <ValidationProvider v-slot="{ errors, valid }" name="Vrsta terena" class="radio__box">
+              <div class="block">
+                <b-radio
+                  v-model="court.wifi"
+                  :type="valid ? 'is-success' : 'is-danger'"
+                  :message="errors"
+                  native-value="open"
+                  rules="required"
+                >
+                  {{ $t('da') }}
+                </b-radio>
+                <b-radio
+                  v-model="court.wifi"
+                  :type="valid ? 'is-success' : 'is-danger'"
+                  :message="errors"
+                  native-value="closed"
+                  rules="required"
+                >
+                  {{ $t('ne') }}
+                </b-radio>
+              </div>
+            </ValidationProvider>
+
+            <div class="label">{{ $t('Sanitarni čvor') }}</div>
             <ValidationProvider v-slot="{ errors, valid }" name="Reflektori" class="radio__box" rules="required">
               <div class="block">
                 <b-radio
@@ -235,7 +304,7 @@
                 </b-radio>
               </div>
             </ValidationProvider>
-            <div class="label">{{ $t('prikazTerenaNaTenisplusStranici') }}</div>
+            <div class="label">{{ $t('Prikaz prostora na krovnoj stranici') }}</div>
             <ValidationProvider v-slot="{ errors, valid }" name="Prikaz" class="radio__box" rules="required">
               <div class="block">
                 <b-radio
@@ -248,6 +317,27 @@
                 </b-radio>
                 <b-radio
                   v-model="court.show_on_tenisplus"
+                  :type="valid ? 'is-success' : 'is-danger'"
+                  :message="errors"
+                  :native-value="false"
+                >
+                  {{ $t('ne') }}
+                </b-radio>
+              </div>
+            </ValidationProvider>
+            <div class="label">{{ $t('Pristup osobama s teškoćama u kretanju') }}</div>
+            <ValidationProvider v-slot="{ errors, valid }" name="Prikaz" class="radio__box" rules="required">
+              <div class="block">
+                <b-radio
+                  v-model="court.invalid"
+                  :type="valid ? 'is-success' : 'is-danger'"
+                  :message="errors"
+                  :native-value="true"
+                >
+                  {{ $t('da') }}
+                </b-radio>
+                <b-radio
+                  v-model="court.invalid"
                   :type="valid ? 'is-success' : 'is-danger'"
                   :message="errors"
                   :native-value="false"
@@ -271,7 +361,7 @@
               </div>
             </div>
 
-            <div class="label">{{ $t('vrstaPodloge') }}</div>
+            <div class="label">{{ $t('Tip prostora') }}</div>
             <div class="activity__reservation">
               <transition name="fade">
                 <div class="activity__box action__buttons">
@@ -615,7 +705,7 @@
           </div>
         </b-steps>
       </b-tab-item>
-      <b-tab-item :label="$t('atraktivni')">
+      <b-tab-item :label="$t('Posebna pravila')">
         <div class="fw600 has-text-lightblue has-text-centered is-size-4 m-t-20">{{ $t('Uskoro') }}</div>
         <b-steps v-if="false" v-model="activeStepAttractive" :has-navigation="hasNavigation" :animated="true">
           <b-step-item has-navigation="false" step="1" :label="$t('posebniTermini')" class="m-t-0 x-container">
@@ -752,6 +842,7 @@ export default {
       court: {
         name: '',
         id: null,
+        description: '',
         reservation_duration: null,
         reservation_confirmation: false,
         reservation_hole: 0,
@@ -759,7 +850,12 @@ export default {
         surface: {},
         is_active: '',
         member_reservation: true,
+        airconditioner: true,
+        heating: true,
         hero_image: '',
+        size: '',
+        invalid: true,
+        wifi: true,
         image: '',
         new_image: '',
         type: '',

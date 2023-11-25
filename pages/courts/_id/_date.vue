@@ -126,6 +126,104 @@
               <court-slot :court="court" />
             </div>
           </div>
+          <div class="align__centar__x m-t-30">
+            <div class="fw600 is-size-3 m-t--30 m-b-0 has-text-centered">{{ $t('Galerija') }}</div>
+          </div>
+
+          <div class="align__centar__x m-t-30">
+            <div class="fw600 is-size-3 m-t--30 m-b-0 has-text-centered">{{ $t('Podaci o prostoru') }}</div>
+          </div>
+          <div class="activity x-container">
+            <div class="">
+              <div class="m-t-0 display-data__box">
+                <div class="modal-subtitle has-text-lightblue is-size-7 is-uppercase">
+                  {{ $t('naziv') }}
+                </div>
+                <div class="fw600 is-size-55">
+                  {{ court.name }}
+                </div>
+              </div>
+              <div class="m-t-10 display-data__box">
+                <div class="modal-subtitle has-text-lightblue is-size-7 is-uppercase">
+                  {{ $t('Površina') }}
+                </div>
+                <div class="fw600 is-size-55">
+                  {{ court.size }}
+                </div>
+              </div>
+              <div class="m-t-10 display-data__box">
+                <div class="modal-subtitle has-text-lightblue is-size-7 is-uppercase">
+                  {{ $t('Opis') }}
+                </div>
+                <div class="has-text-left is-size-6 content-tiny" v-html="court.description"></div>
+              </div>
+              <div class="m-t-10 display-data__box">
+                <div class="modal-subtitle has-text-lightblue is-size-7 is-uppercase">
+                  {{ $t('Klimatizacija') }}
+                </div>
+                <div class="fw600 is-size-55">
+                  {{ court.airconditioner ? $t('Da') : $t('Ne') }}
+                </div>
+              </div>
+              <div class="m-t-10 display-data__box">
+                <div class="modal-subtitle has-text-lightblue is-size-7 is-uppercase">
+                  {{ $t('Grijanje') }}
+                </div>
+                <div class="fw600 is-size-55">
+                  {{ court.heating ? $t('Da') : $t('Ne') }}
+                </div>
+              </div>
+              <div class="m-t-10 display-data__box">
+                <div class="modal-subtitle has-text-lightblue is-size-7 is-uppercase">
+                  {{ $t('Sanitarni čvor') }}
+                </div>
+                <div class="fw600 is-size-55">
+                  {{ court.lights ? $t('Da') : $t('Ne') }}
+                </div>
+              </div>
+              <div class="m-t-10 display-data__box">
+                <div class="modal-subtitle has-text-lightblue is-size-7 is-uppercase">
+                  {{ $t('Sanitarni čvor') }}
+                </div>
+                <div class="fw600 is-size-55">
+                  {{ court.lights ? $t('Da') : $t('Ne') }}
+                </div>
+              </div>
+              <div class="m-t-10 display-data__box">
+                <div class="modal-subtitle has-text-lightblue is-size-7 is-uppercase">
+                  {{ $t('Wifi') }}
+                </div>
+                <div class="fw600 is-size-55">
+                  {{ court.wifi ? $t('Da') : $t('Ne') }}
+                </div>
+              </div>
+              <div class="m-t-10 display-data__box">
+                <div class="modal-subtitle has-text-lightblue is-size-7 is-uppercase">
+                  {{ $t('Pristup osobama s teškoćama u kretanju') }}
+                </div>
+                <div class="fw600 is-size-55">
+                  {{ court.invalid ? $t('Da') : $t('Ne') }}
+                </div>
+              </div>
+              <div class="m-t-10 display-data__box">
+                <div class="modal-subtitle has-text-lightblue is-size-7 is-uppercase">
+                  {{ $t('Tip prostora') }}
+                </div>
+                <div class="fw600 is-size-55">
+                  {{ court.type }}
+                </div>
+              </div>
+              <div class="m-t-10 display-data__box">
+                <div class="modal-subtitle has-text-lightblue is-size-7 is-uppercase">
+                  {{ $t('otkazivanjeRezervacije') }}
+                </div>
+                <div class="fw600 is-size-55">
+                  {{ court ? $t('mogue') : $t('nijeMogue') }}
+                </div>
+              </div>
+            </div>
+          </div>
+
 
           <!-- Google map -->
           <div v-if="court.id" style="width: 100%;, height: 400px; margin-bottom: 3rem;">

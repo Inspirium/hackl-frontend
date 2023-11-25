@@ -46,6 +46,7 @@
     <template v-if="club.type === 'tournament'">
       <div class="flex aboutclub_box align__centar__x is-bckg align__centar__all">
         <nuxt-link
+          v-if="club.id !== 26"
           :to="localePath('/clubs/' + club.id + '/myclub')"
           type="div"
           class="h100 cursor fw600 p-all-12 is-size-65 line-height-9 flex align__centar__all"
@@ -57,7 +58,22 @@
             type="is-black30 m-r-3"
             pack="fal"
           ></b-icon
-          >{{ $t('O klubu') }}
+          >{{ $t('O gradskom odboru') }}
+        </nuxt-link>
+        <nuxt-link
+          v-else
+          :to="localePath('/clubs/' + club.id + '/myclub')"
+          type="div"
+          class="h100 cursor fw600 p-all-12 is-size-65 line-height-9 flex align__centar__all"
+        >
+          <b-icon
+            style="transition: 0.25s all"
+            icon="circle-info"
+            size="is-smaller-12"
+            type="is-black30 m-r-3"
+            pack="fal"
+          ></b-icon
+          >{{ $t('O mjesnim odborima') }}
         </nuxt-link>
         <nuxt-link
           v-if="user"
@@ -304,6 +320,7 @@
     <template v-else>
       <div class="flex aboutclub_box align__centar__x is-bckg align__centar__all">
         <nuxt-link
+          v-if="club.id !== 26"
           :to="localePath('/clubs/' + club.id + '/myclub')"
           type="div"
           class="h100 cursor fw600 p-all-12 is-size-65 line-height-9 flex align__centar__all"
@@ -315,7 +332,22 @@
             type="is-black30 m-r-3"
             pack="fal"
           ></b-icon
-          >{{ $t('O klubu') }}
+          >{{ $t('O gradskom odboru') }}
+        </nuxt-link>
+        <nuxt-link
+          v-else
+          :to="localePath('/clubs/' + club.id + '/myclub')"
+          type="div"
+          class="h100 cursor fw600 p-all-12 is-size-65 line-height-9 flex align__centar__all"
+        >
+          <b-icon
+            style="transition: 0.25s all"
+            icon="circle-info"
+            size="is-smaller-12"
+            type="is-black30 m-r-3"
+            pack="fal"
+          ></b-icon
+          >{{ $t('O mjesnom odborima') }}
         </nuxt-link>
         <nuxt-link
           v-if="user"
@@ -357,48 +389,49 @@
           <div class="">
             <nuxt-link :to="localePath('/courts')" type="div" class="">
               <img src="reservation.svg" alt="" />
-              <div v-if="club.type === 'classic'" class="nav__menu">{{ $t('rezervacijaTerena') }}</div>
-              <div v-else class="nav__menu">{{ $t('tereni') }}</div>
+              <div class="nav__menu">Prostori</div>
             </nuxt-link>
           </div>
           <div class="">
             <nuxt-link :to="localePath('/player')">
               <img src="players.svg" alt="" />
-              <div class="nav__menu">{{ $t('igrai') }}</div>
+              <div class="nav__menu">Korisnici</div>
             </nuxt-link>
           </div>
           <div class="">
             <nuxt-link :to="localePath('/result')">
               <img src="results.svg" alt="" />
-              <div class="nav__menu">{{ $t('rezultati') }}</div>
+              <div class="nav__menu">Zaprimljene prijave</div>
             </nuxt-link>
           </div>
         </div>
         <div class="home-menu-middle">
-          <div class="">
-            <nuxt-link :to="localePath('doubles')" class="has-text-black50">
-              <b-icon class="m-b-5" pack="fal" icon="user-friends" type="is-black50"> </b-icon>
-              <div class="nav__menu">{{ $t('parovi') }}</div>
+          <!--          <div class="">-->
+          <!--            <nuxt-link :to="localePath('doubles')" class="has-text-black50">-->
+          <!--              <b-icon class="m-b-5" pack="fal" icon="user-friends" type="is-black50"> </b-icon>-->
+          <!--              <div class="nav__menu">{{ $t('parovi') }}</div>-->
+          <!--            </nuxt-link>-->
+          <!--          </div>-->
+          <!--          <div class="">-->
+          <!--            <nuxt-link :to="localePath('/schedule')" class="has-text-black50">-->
+          <!--              <b-icon class="m-b-5" pack="fal" icon="clock" type="is-black50"> </b-icon>-->
+          <!--              <div class="nav__menu">{{ $t('najaveMeeva') }}</div>-->
+          <!--            </nuxt-link>-->
+          <!--          </div>-->
+          <div class="has-background-white m-t-3 p-t-10 p-b-5">
+            <nuxt-link :to="localePath('/clubs')" type="div" class="flex align__centar__all">
+              <b-icon class="m-b-5" pack="fal" icon="tree-city" type="is-black50"> </b-icon>
+              <div class="nav__menu">Popis gradskih odbora</div>
             </nuxt-link>
           </div>
-          <div class="">
-            <nuxt-link :to="localePath('/schedule')" class="has-text-black50">
-              <b-icon class="m-b-5" pack="fal" icon="clock" type="is-black50"> </b-icon>
-              <div class="nav__menu">{{ $t('najaveMeeva') }}</div>
-            </nuxt-link>
-          </div>
-          <div v-if="club.type === 'classic' && club.hide_ranks" class="">
-            <nuxt-link :to="localePath('/rankings')" class="has-text-black50">
-              <b-icon class="m-b-5" pack="fal" icon="trophy" type="is-black50"> </b-icon>
-              <div class="nav__menu">{{ $t('rangLjestvica') }}</div>
-            </nuxt-link>
-          </div>
+
           <div class="">
             <nuxt-link :to="localePath('/messages')" class="has-text-black50">
               <b-icon class="m-b-5" pack="fal" icon="comments" type="is-black50"> </b-icon>
               <div class="nav__menu">{{ $t('poruke') }}</div>
             </nuxt-link>
           </div>
+
           <div v-show="false">
             <nuxt-link :to="localePath('/school')" class="has-text-black50">
               <font-awesome-icon class="m-b-5" icon="fa-light fa-university"> </font-awesome-icon>
@@ -540,7 +573,7 @@
         <div class="empty__box">
           <div class="m-b-10">
             <nuxt-link :to="localePath('/classified')" class="fw600 is-text-center is-size-3 has-text-black80">{{
-              $t('klupskeVijesti')
+              $t('Vijesti')
             }}</nuxt-link>
           </div>
           <div class="fw600 is-size-65 m-t-10 m-b-15 is-text-center">
