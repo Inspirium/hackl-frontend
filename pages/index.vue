@@ -399,7 +399,7 @@
             </nuxt-link>
           </div>
           <div class="">
-            <nuxt-link :to="localePath('/result')">
+            <nuxt-link :to="localePath('/schedule')">
               <img src="results.svg" alt="" />
               <div class="nav__menu">Zaprimljene prijave</div>
             </nuxt-link>

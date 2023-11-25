@@ -50,7 +50,7 @@
               @click="isModalMembersActive = true"
             >
               <b-icon class="m-l-5 m-r-10" icon="random" size="is-smaller" type="is-white" pack="fal"></b-icon>
-              <div class="fw600 is-size-6 has-text-white">{{ $t('promjeniKlub') }}</div>
+              <div class="fw600 is-size-6 has-text-white">Promijeni mjesni odbor</div>
             </div>
             <div
               class="align__centar__y select-item--menu--invert m-b-15 m-l-10 p-r-25 w-auto"
@@ -67,7 +67,7 @@
           </div>
           <div v-if="$store.state.club.id === 26 && user" class="m-b-20" @click="isMenuModalActive = false">
             <div class="fw600 has-text-white is-size-65 m-b-3">
-              {{ Object.keys(user.club_member).length > 1 ? $t('Tvoji klubovi') : $t('Tvoj klub') }}
+              {{ Object.keys(user.club_member).length > 1 ? $t('Tvoji mjesni odbori') : $t('Tvoj mjesni odbor') }}
             </div>
             <div v-for="(item, key, index) in user.club_member" v-show="key !== '26'" :key="index">
               <div
@@ -82,8 +82,8 @@
           </div>
           <div v-else class="m-t-10" @click="isMenuModalActive = false">
             <div class="align__centar__y select-item--menu--invert" @click.prevent="submitToTopClub()">
-              <img src="/logo__login-sign.svg" class="min-w-33 m-r-10" alt="" />
-              <div class="fw600 is-size-55 has-text-white is-uppercase">{{ $t('mojtenisplus') }}</div>
+              <b-icon icon="plus-circle" pack="fal" type="is-white" size="is-medium" class="min-w-33 m-r-10" />
+              <div class="fw600 is-size-55 has-text-white is-uppercase">Svi prostori</div>
               <b-icon class="m-l-auto" icon="chevron-right" size="is-smaller" pack="fal"> </b-icon>
             </div>
           </div>
@@ -364,7 +364,7 @@ export default {
     },
     submitToTopClub() {
       if (Capacitor.getPlatform() === 'web') {
-        window.location.href = `https://my.tenis.plus`
+        window.location.href = `https://hakl.inspirium.hr`
       } else {
         this.$store.commit('club/setId', 26)
         this.$store.dispatch('club/init_club', { force: true })

@@ -86,7 +86,6 @@
               </template>-->
               <!--End-->
               <div v-if="isAdmin && isMemberOfTheClub" class="admin_box m-b-30 m-t-30 p-t-25">
-                <admin-weather-buttons @update="getCourts()"></admin-weather-buttons>
                 <div v-if="user && user.is_admin" class="buttons">
                   <b-button
                     class="softshadow"
@@ -97,7 +96,7 @@
                     tag="nuxt-link"
                     :to="localePath('/admin/courts')"
                   >
-                    {{ $t('administracijaTerena') }}
+                    Administracija prostora
                   </b-button>
                   <b-button
                     class="softshadow"
@@ -107,23 +106,12 @@
                     rounded
                     @click="isModalCourtBreakActive = true"
                   >
-                    {{ $t('Nedostupnost terena') }}
+                    Nedostupnost prostora
                   </b-button>
                 </div>
               </div>
               <template v-if="isMemberOfTheClub">
                 <div class="buttons m-t-10">
-                  <b-button
-                    class="softshadow m-t-10 m-b-10"
-                    type="is-small noborder"
-                    icon-right="tennis-ball"
-                    pack="fal"
-                    rounded
-                    tag="nuxt-link"
-                    :to="localePath('/terms')"
-                  >
-                    {{ $t('predloiTermineIgrau') }}
-                  </b-button>
                   <b-button
                     class="softshadow m-t-10 m-b-10"
                     type="is-small noborder"

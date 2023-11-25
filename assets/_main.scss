@@ -282,6 +282,13 @@ h4 {
   color: $black80;
 }
 
+.flex-aja {
+  flex-wrap: wrap;
+  & > * {
+    margin-right: 10px;
+  }
+}
+
 .player__name {
   padding: 3px 0;
   color: $black80;

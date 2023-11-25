@@ -134,8 +134,8 @@
             <div class="fw600 is-size-3 m-t--30 m-b-0 has-text-centered">{{ $t('Podaci o prostoru') }}</div>
           </div>
           <div class="activity x-container">
-            <div class="">
-              <div class="m-t-0 display-data__box">
+            <div class="flex flex-aja">
+              <div class="m-t-10 display-data__box">
                 <div class="modal-subtitle has-text-lightblue is-size-7 is-uppercase">
                   {{ $t('naziv') }}
                 </div>
@@ -153,12 +153,6 @@
               </div>
               <div class="m-t-10 display-data__box">
                 <div class="modal-subtitle has-text-lightblue is-size-7 is-uppercase">
-                  {{ $t('Opis') }}
-                </div>
-                <div class="has-text-left is-size-6 content-tiny" v-html="court.description"></div>
-              </div>
-              <div class="m-t-10 display-data__box">
-                <div class="modal-subtitle has-text-lightblue is-size-7 is-uppercase">
                   {{ $t('Klimatizacija') }}
                 </div>
                 <div class="fw600 is-size-55">
@@ -171,14 +165,6 @@
                 </div>
                 <div class="fw600 is-size-55">
                   {{ court.heating ? $t('Da') : $t('Ne') }}
-                </div>
-              </div>
-              <div class="m-t-10 display-data__box">
-                <div class="modal-subtitle has-text-lightblue is-size-7 is-uppercase">
-                  {{ $t('Sanitarni čvor') }}
-                </div>
-                <div class="fw600 is-size-55">
-                  {{ court.lights ? $t('Da') : $t('Ne') }}
                 </div>
               </div>
               <div class="m-t-10 display-data__box">
@@ -223,7 +209,9 @@
               </div>
             </div>
           </div>
-
+          <div class="m-t-10 m-b-30 display-data__box">
+            <div class="has-text-left is-size-6 content-tiny" v-html="court.description"></div>
+          </div>
           <!-- Google map -->
           <div v-if="court.id" style="width: 100%;, height: 400px; margin-bottom: 3rem;">
             <GmapMap
