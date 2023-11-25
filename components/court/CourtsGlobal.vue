@@ -67,14 +67,14 @@
       <div v-show="!showFilter" class="divider-line-1 m-t-0" />
       <transition name="fade" mode="out-in">
         <div v-show="showFilter">
-          <div class="fw600 has-text-centered w100 has-text-lightblue m-t-5 m-b-10 is-size-6">{{ $t('Grad') }}</div>
+          <div class="fw600 has-text-centered w100 has-text-lightblue m-t-5 m-b-10 is-size-6">Gradska četvrt</div>
           <b-field class="p-x-16">
             <b-autocomplete
               v-model="city"
               rounded
               field="name"
               :data="cities"
-              :placeholder="$t('Odaberi grad')"
+              :placeholder="$t('Odaberi gradsku četvrt')"
               clearable
               @select="(option) => (selected = option)"
             >
@@ -82,23 +82,63 @@
             </b-autocomplete>
           </b-field>
           <div class="divider-line-1 m-t-10"></div>
-          <div class="fw600 has-text-centered w100 has-text-lightblue m-t-5 m-b-10 is-size-6">{{ $t('Sport') }}</div>
+          <div class="fw600 has-text-centered w100 has-text-lightblue m-t-5 m-b-10 is-size-6">Svojstva prostora</div>
           <div class="buttons m-t-5 m-b-5">
             <b-button
-              v-for="(item, index) in sports"
-              :key="index"
               class="m-t-5 m-b-5 m-l-5 m-r-5"
-              :class="{ softshadow: true, 'invert-small-button': selectedSport.name === item.name }"
+              :class="{ softshadow: true, 'invert-small-button': wifi }"
               :type="{
                 'is-small': true,
                 noborder: true,
-                'is-primary has-text-white': selectedSport.name === item.name,
+                'is-primary has-text-white': wifi,
               }"
               pack="fal"
               rounded
-              @click.prevent="updateSports(item)"
+              @click.prevent="wifi = !wifi"
             >
-              {{ $t(item.name) }}
+              Wi-fi
+            </b-button>
+            <b-button
+              class="m-t-5 m-b-5 m-l-5 m-r-5"
+              :class="{ softshadow: true, 'invert-small-button': airconditioner }"
+              :type="{
+                'is-small': true,
+                noborder: true,
+                'is-primary has-text-white': airconditioner,
+              }"
+              pack="fal"
+              rounded
+              @click.prevent="airconditioner = !airconditioner"
+            >
+              Klima
+            </b-button>
+            <b-button
+              class="m-t-5 m-b-5 m-l-5 m-r-5"
+              :class="{ softshadow: true, 'invert-small-button': heating }"
+              :type="{
+                'is-small': true,
+                noborder: true,
+                'is-primary has-text-white': heating,
+              }"
+              pack="fal"
+              rounded
+              @click.prevent="heating = !heating"
+            >
+              Grijanje
+            </b-button>
+            <b-button
+              class="m-t-5 m-b-5 m-l-5 m-r-5"
+              :class="{ softshadow: true, 'invert-small-button': invalid }"
+              :type="{
+                'is-small': true,
+                noborder: true,
+                'is-primary has-text-white': invalid,
+              }"
+              pack="fal"
+              rounded
+              @click.prevent="invalid = !invalid"
+            >
+              Pristup osobama s poteškoćama u kretanju
             </b-button>
           </div>
           <!--          <div class="divider-line-1 m-t-0"></div>-->
@@ -124,25 +164,6 @@
           <!--            </b-button>-->
           <!--          </div>-->
           <div class="divider-line-1 m-t-0"></div>
-          <div class="fw600 has-text-centered w100 has-text-lightblue m-t-5 m-b-10 is-size-6">{{ $t('Rasvjeta') }}</div>
-          <div class="buttons m-t-5 m-b-5">
-            <b-button
-              v-for="(item, index) in lights"
-              :key="index"
-              class="m-t-5 m-b-5 m-l-5 m-r-5"
-              :class="{ softshadow: true, 'invert-small-button': selectedLight.name === item.name }"
-              :type="{
-                'is-small': true,
-                noborder: true,
-                'is-primary has-text-white': selectedLight.name === item.name,
-              }"
-              pack="fal"
-              rounded
-              @click.prevent="updateLights(item)"
-            >
-              {{ $t(item.name) }}
-            </b-button>
-          </div>
           <div class="divider-line-1 m-t-10"></div>
           <div class="has-text-centered m-t-20 m-b-20">
             <div class="label--center">{{ $t('Spremi opcije filtera') }}</div>
@@ -186,7 +207,7 @@
             :key="court.id"
             :position="{ lat: parseFloat(court.club.latitude), lng: parseFloat(court.club.longitude) }"
             :clickable="true"
-            @click="logCourtName(court.club.name)"
+            @click="logCourtName(court.id)"
           />
         </GmapMap>
       </div>
@@ -362,7 +383,6 @@ export default {
   async fetch() {
     await this.$nextTick(() => {
       this.getClubs()
-      this.getSports()
     })
   },
   data() {
@@ -424,7 +444,10 @@ export default {
       clientSecret: '',
       showStripe: false,
       selectedTerm: {},
-
+      wifi: false,
+      airconditioner: false,
+      heating: false,
+      invalid: false,
       mapCenter: { lat: 45.815, lng: 15.9819 }, // coordinates for Zagreb, Croatia
       mapZoom: 11,
     }
@@ -661,8 +684,17 @@ export default {
       if (this.selectedLight.name !== 'Sve') {
         fc.where('lights', lights)
       }
-      if (this.selectedSport.name !== 'Sve') {
-        fc.where('sport', this.selectedSport.id)
+      if (this.wifi) {
+        fc.where('wifi', 1)
+      }
+      if (this.airconditioner) {
+        fc.where('airconditioner', 1)
+      }
+      if (this.heating) {
+        fc.where('heating', 1)
+      }
+      if (this.invalid) {
+        fc.where('invalid', 1)
       }
       if (this.selectedSurface.title !== 'Sve') {
         fc.where('surface', this.selectedSurface.id)
@@ -782,8 +814,8 @@ export default {
       return window.innerHeight + window.pageYOffset + 200 >= document.body.offsetHeight
     },
 
-    logCourtName(courtName) {
-      console.log('Court clicked:', courtName)
+    logCourtName(court) {
+      this.$router.push('/courts/' + court + '/' + moment(this.selected_date).format('YYYY-MM-DD'))
     },
   },
   head() {

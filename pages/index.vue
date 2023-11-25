@@ -14,7 +14,7 @@
     <div v-if="isApprovedMemeber"></div>
     <!--<birthday class="" />-->
     <admin-rain-indicator />
-    <div v-if="!isMemberOfTheClub" class="notify cursor" @click.prevent="joinClub">
+    <!--<div v-if="!isMemberOfTheClub" class="notify cursor" @click.prevent="joinClub">
       <div class="notification-info is-primary">
         <font-awesome-icon
           class="m-t-5 has-text-white transparency-translate"
@@ -26,7 +26,7 @@
           {{ $t('Prijavi se u klub') }} {{ club.name }}
         </div>
       </div>
-    </div>
+    </div>-->
     <template v-if="isNative">
       <div v-if="!hasSubscription" class="notify" @click.prevent="subscribe()">
         <div class="notification-info is-primary flex align__centar__all">

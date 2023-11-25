@@ -10,7 +10,7 @@ export default {
    ** Headers of the page
    */
   head: {
-    title: 'Tennis.plus — upravljanje teniskim klubom, rezervacije terena, izrada natjecanja, praćenje rezultata...',
+    title: 'Prostori.plus',
     titleTemplate: '%s | Tennis.plus',
     meta: [
       { charset: 'utf-8' },

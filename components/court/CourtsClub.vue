@@ -998,7 +998,10 @@ export default {
       return this.$auth.user.is_trainer
     },
     maxSpan() {
-      return this.user.membership.max_reservation_span
+      if (this.user) {
+        return this.user.membership.max_reservation_span
+      }
+      return 7
     },
     clubId() {
       return this.club.id
