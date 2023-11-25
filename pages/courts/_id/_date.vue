@@ -126,6 +126,23 @@
               <court-slot :court="court" />
             </div>
           </div>
+
+          <!-- Google map -->
+          <div v-if="court.id" style="width: 100%;, height: 400px; margin-bottom: 3rem;">
+            <GmapMap
+              :center="{ lat: parseFloat(court.club.latitude), lng: parseFloat(court.club.longitude) }"
+              :zoom="mapZoom"
+              map-type-id="roadmap"
+              style="width: 100%; height: 400px"
+            >
+              <GmapMarker
+                :position="{ lat: parseFloat(court.club.latitude), lng: parseFloat(court.club.longitude) }"
+                :clickable="true"
+                @click="logCourtName(court.club.name)"
+              />
+            </GmapMap>
+          </div>
+
           <!-- Table list -->
           <div class="activity">
             <div class="align__centar__x">
@@ -729,6 +746,8 @@ export default {
       showStripe: false,
       direction: '',
       componentKey: 1,
+
+      mapZoom: 15,
     }
   },
   computed: {

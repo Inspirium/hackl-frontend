@@ -589,6 +589,7 @@ export default {
     this.to = this.$moment().add(3, 'h').format('HH')
     this.debouncedGetCity()
 
+    // this might be useless (google maps)
     this.$nextTick(() => {
       window.dispatchEvent(new Event('resize'))
     })
