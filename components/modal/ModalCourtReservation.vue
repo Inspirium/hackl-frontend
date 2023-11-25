@@ -532,266 +532,74 @@
               </div>
             </div>
           </template>
-
-          <template
-            v-if="
-              club.id !== 26 &&
-              Object.keys(selected_player).length !== 0 &&
-              listTypeSchool === false &&
-              guestName === '' &&
-              !is_doubles
-            "
-          >
-            <div v-if="!forSomeoneElse" class="confirm-reservation">
-              <TennisImage :size="[42, 42]" :src="user.image" class="user_image m-r-10" />
-              <div class="list__content">
-                <h3 class="fw600 is-size-5 has-text-black80">{{ user.display_name }}</h3>
-                <h4
-                  v-if="user.membership.max_reservation_per_period"
-                  class="fw600 is-size-65 relative has-text-black50 m-t-2"
-                >
-                  {{ $t('Aktivnih rezervacija') }}:
-                  <span
-                    v-if="!loading_reservation"
-                    class="fw600 is-size-65"
-                    :class="
-                      checkReservations >= user.membership.max_reservation_per_period_days
-                        ? 'has-text-danger'
-                        : 'has-text-lightblue'
-                    "
-                    >{{ checkReservations }}{{ 'h' }}</span
-                  >
-
-                  <b-icon
-                    v-else
-                    class="spinner-small"
-                    custom-class="rotating"
-                    icon="spinner"
-                    size="is-small"
-                    type="is-primary"
-                    pack="far"
-                  ></b-icon>
-                </h4>
-              </div>
-              <b-tag type="is-info m-l-auto">{{ Math.round(user.team.rating_club) }}</b-tag>
-            </div>
-
-            <div class="confirm-reservation">
-              <TennisImage :size="[42, 42]" :src="selected_player.image" class="user_image m-r-10" />
-              <div class="list__content">
-                <h3 class="fw600 is-size-5 has-text-black80">{{ selected_player.display_name }}</h3>
-                <h4
-                  v-if="forSomeoneElse && selected_player.membership.max_reservation_per_period"
-                  class="fw600 is-size-65 relative has-text-black50 m-t-2"
-                >
-                  {{ $t('Aktivnih rezervacija') }}:
-                  <span
-                    v-if="!loading_reservation"
-                    class="fw600 is-size-65"
-                    :class="
-                      checkReservations >= selected_player.membership.max_reservation_per_period_days
-                        ? 'has-text-danger'
-                        : 'has-text-lightblue'
-                    "
-                    >{{ checkReservations }}{{ 'h' }}</span
-                  >
-                  <b-icon
-                    v-else
-                    class="spinner-small"
-                    custom-class="rotating"
-                    icon="spinner"
-                    size="is-small"
-                    type="is-primary"
-                    pack="far"
-                  ></b-icon>
-                </h4>
-              </div>
-              <b-tag type="is-info m-l-auto">{{ Math.round(selected_player.rating_club) }}</b-tag>
-            </div>
-          </template>
-          <template
-            v-if="
-              club.id !== 26 &&
-              Object.keys(selected_player).length === 0 &&
-              listTypeSchool === false &&
-              guestName === '' &&
-              is_doubles === false &&
-              !Object.keys(specialReservationSelected).length
-            "
-          >
-            <div class="confirm-reservation">
-              <TennisImage :size="[42, 42]" :src="user.image" class="user_image m-r-10" />
-              <div class="list__content">
-                <h3 class="fw600 is-size-5 has-text-black80">{{ user.display_name }}</h3>
-                <template v-if="$store.state.club.id !== 26">
-                  <h4
-                    v-if="user.membership.max_reservation_per_period"
-                    class="fw600 relative is-size-65 has-text-black50 m-t-2"
-                  >
-                    {{ $t('Aktivnih rezervacija') }}:
-                    <span
-                      v-if="!loading_reservation"
-                      class="fw600 is-size-65"
-                      :class="
-                        checkReservations >= user.membership.max_reservation_per_period_days
-                          ? 'has-text-danger'
-                          : 'has-text-lightblue'
-                      "
-                      >{{ checkReservations }}{{ 'h' }}</span
-                    >
-                    <b-icon
-                      v-else
-                      class="spinner-small"
-                      custom-class="rotating"
-                      icon="spinner"
-                      size="is-small"
-                      type="is-primary"
-                      pack="far"
-                    ></b-icon>
-                  </h4>
-                </template>
-              </div>
-              <b-tag type="is-info m-l-auto">{{ Math.round(user.team.rating_club) }}</b-tag>
-            </div>
-          </template>
-          <!--          Prikaz za parove-->
-          <template v-if="selected_teams.length > 0 && listTypeSchool === false && members.length">
-            <div class="confirm-reservation">
-              <div v-if="selected_teams[0].image === 'https://api.tenis.plus/images/user.svg'" class="list__img">
-                <TennisImage
-                  :size="[42, 42]"
-                  :src="selected_teams[0].players[0].image"
-                  class="user_image border__white--2"
-                  alt=""
-                />
-                <TennisImage
-                  :size="[42, 42]"
-                  :src="selected_teams[0].players[1].image"
-                  class="user_image m-l--20 border__white--2"
-                  alt=""
-                />
-              </div>
-              <div v-else class="list__img">
-                <TennisImage
-                  :size="[42, 42]"
-                  :src="selected_teams[0].image"
-                  class="user_image border__white--2"
-                  alt=""
-                />
-              </div>
-              <div class="list__content">
-                <h3 class="fw600 is-size-5 has-text-black80">{{ selected_teams[0].display_name }}</h3>
-              </div>
-            </div>
-            <div v-if="selected_teams.length === 2" class="confirm-reservation">
-              <div v-if="selected_teams[1].image === 'https://api.tenis.plus/images/user.svg'" class="list__img">
-                <TennisImage
-                  :size="[42, 42]"
-                  :src="selected_teams[1].players[0].image"
-                  class="user_image border__white--2"
-                  alt=""
-                />
-                <TennisImage
-                  :size="[42, 42]"
-                  :src="selected_teams[1].players[1].image"
-                  class="user_image m-l--20 border__white--2"
-                  alt=""
-                />
-              </div>
-              <div v-else class="list__img">
-                <TennisImage
-                  :size="[42, 42]"
-                  :src="selected_teams[1].image"
-                  class="user_image border__white--2"
-                  alt=""
-                />
-              </div>
-              <div class="list__content">
-                <h3 class="fw600 is-size-5 has-text-black80">{{ selected_teams[1].display_name }}</h3>
-              </div>
-            </div>
-          </template>
-          <!--          Prikaz za škole tenisa-->
-          <div v-if="listTypeSchool === true" class="confirm-reservation">
-            <TennisImage
-              v-if="selected_player.image"
-              :size="[42, 42]"
-              :src="selected_player.image"
-              class="user_image m-r-10"
-            />
-            <div class="list__content">
-              <h3 class="fw600 is-size-5 has-text-black80">{{ selected_player.name }}</h3>
-            </div>
-          </div>
-          <div v-if="Object.keys(specialReservationSelected).length" class="confirm-reservation">
-            <div class="confirm-reservation w100">
-              <TennisImage
-                v-if="specialReservationSelected.image"
-                :size="[42, 42]"
-                :src="specialReservationSelected.image.link"
-                class="user_image m-r-10"
-              />
-              <div class="list__content">
-                <h3 class="fw600 m-b-5">{{ specialReservationSelected.name }}</h3>
-                <h3 class="fw600 m-t--2 has-text-black80 is-size-65">{{ specialReservationSelected.description }}</h3>
-
-                <div class="has-text-black80 fw600 is-size-65 m-l-auto nowrap">
-                  {{ $t('boja') }}
-                  <span :style="`backgroundColor: ${specialReservationSelected.color}`" class="color-indicator"></span>
-                </div>
-                <div class="fw600 has-text-black80 is-size-65 m-l-auto nowrap">
-                  {{ $t('oznaka') }}
-                  <span :class="specialReservationSelected.is_paid ? 'has-text-lightblue' : 'has-text-danger'">{{
-                    specialReservationSelected.is_paid ? 'Plaćeno' : 'Nije plaćeno'
-                  }}</span>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-        <template
-          v-if="
-            club.id !== 26 &&
-            listTypeSchool === false &&
-            guestName === '' &&
-            !forSomeoneElse &&
-            !specialReservation &&
-            user.membership?.reservation_cancelable
-          "
-        >
-          <div class="fw600 is-size-65 has-text-white m-t-5">
-            {{ $t('Otkazivanje') }}: <span>{{ user.membership?.reservation_cancelable }}</span>
-            {{ $t('sata prije početka termina') }}
-          </div>
-        </template>
-        <div v-if="!guestReservation && !is_group" class="">
-          <b-field class="login__input__container has-text-lightblue" :label="$t('napomena')">
-            <b-input v-model="name" type="text" rounded> </b-input>
-          </b-field>
         </div>
         <div class="align__centar__x">
           <b-button class="m-t-30" type="is-primary" pack="far" icon-right="repeat" rounded @click="activeTab++">
             {{ $t('ponavljajuiTermin') }}
           </b-button>
         </div>
-        <template v-if="!isAdmin">
-          <div
-            v-if="
-              $store.state.club.id === 26
-                ? court.reservation_prepayment
-                : user.membership?.reservation_prepayment && court.club.payment_online
-            "
-            class="align__centar__x m-t-30 m-b-25"
-          >
-            <div class="empty_red_empty has-text-centered has-text-white">
-              <b-icon icon="exclamation-square" type="is-danger" size="is-medium" pack="fal" />
-              <div class="fw600 has-text-centered">{{ $t('Rezervaciju plaćate na sljedećm koraku') }}</div>
-            </div>
+        <div v-if="repeatReservationsWeeks" class="">
+          <div class="fw600 has-text-centered has-text-white m-t-20 is-size-55">
+            Broj ponavljajućih rezervacija <span class="has-text-lightblue">{{ repeatReservationsWeeks }}</span>
           </div>
-        </template>
+        </div>
+        <div class="forma">
+          <b-field class="login__input__container has-text-lightblue" :label="$t('Ime')">
+            <b-input v-model="applicant.name" type="text" rounded> </b-input>
+          </b-field>
+          <b-field class="login__input__container has-text-lightblue" :label="$t('Adresa')">
+            <b-input v-model="applicant.address" type="text" rounded> </b-input>
+          </b-field>
+          <b-field
+            class="login__input__container has-text-lightblue"
+            :label="$t('Ime i prezime osobe ovlaštene za zastupanje')"
+          >
+            <b-input v-model="applicant.representative" type="text" rounded> </b-input>
+          </b-field>
+          <b-field class="login__input__container has-text-lightblue" :label="$t('OIB')">
+            <b-input v-model="applicant.oib" type="number" rounded> </b-input>
+          </b-field>
+          <b-field class="login__input__container has-text-lightblue" :label="$t('Telefon')">
+            <b-input v-model="applicant.phone" type="text" rounded> </b-input>
+          </b-field>
+          <b-field class="login__input__container has-text-lightblue" :label="$t('E-mail')">
+            <b-input v-model="email" type="email" rounded> </b-input>
+          </b-field>
+          <b-field class="login__input__container has-text-lightblue" :label="$t('Opis')">
+            <b-input v-model="description" type="text" rounded> </b-input>
+          </b-field>
+          <b-field class="login__input__container has-text-lightblue" :label="$t('Bilješka')">
+            <b-input v-model="note" type="text" rounded> </b-input>
+          </b-field>
+          <b-field class="login__input__container has-text-lightblue" :label="$t('Javni opis')">
+            <b-input v-model="public_description" type="text" rounded> </b-input>
+          </b-field>
+          <ValidationProvider v-slot="{ errors, valid }" name="Uvjeti korištenja" rules="required">
+            <b-field :type="{ 'is-danger': errors[0], 'is-success': valid }" :message="errors">
+              <b-checkbox v-model="consent" name="consent" :true-value="true" class="has-text-white m-t-10"
+                >{{ $t('prihvaam') }}
+                <a href="https://www.tenis.plus/terms" target="_blank">{{ $t('uvjeteKoritenja') }}</a></b-checkbox
+              >
+            </b-field>
+          </ValidationProvider>
+        </div>
       </b-tab-item>
       <b-tab-item>
         <div class="modal-title has-text-light m-b-15">{{ $t('ponavljajuaRezervacija') }}</div>
+
+        <div class="buttons m-t-20">
+          <b-button
+            class="softshadow m-t-10 m-b-20 invert-small-button"
+            type="is-small noborder is-danger has-text-white"
+            pack="fal"
+            icon-left="chevron-left"
+            rounded
+            @click="activeTab--"
+          >
+            Nazad
+          </b-button>
+        </div>
+
         <div v-if="!$auth.user.is_admin" class="modal-subtitle is-size-6 has-text-light m-b-20 lh12">
           {{ $t('odaberiteKolikoSljedeihIstovjetnihTjednihTerminaEl') }}
           <div class="is-size-7 has-text-light m-b-20 m-t-15 lh12">
@@ -1018,6 +826,18 @@ export default {
       showCompetition: false,
       isReservatioPre: false,
       game: {},
+      applicant: {
+        name: '',
+        address: '',
+        representative: '',
+        oib: '',
+        phone: '',
+      },
+      email: '',
+      description: '',
+      note: '',
+      public_description: '',
+      consent: false,
     }
   },
   computed: {
@@ -1613,6 +1433,12 @@ export default {
         every_other_week: this.selectedType === 'second',
         court_id: this.court.id,
         name: this.name,
+        applicant: this.applicant,
+        email: this.email,
+        description: this.description,
+        note: this.note,
+        public_description: this.public_description,
+        consent: this.consent,
       })
 
       if (Object.keys(this.game).length) {

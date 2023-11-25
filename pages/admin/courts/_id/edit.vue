@@ -144,7 +144,7 @@
                   v-model="court.airconditioner"
                   :type="valid ? 'is-success' : 'is-danger'"
                   :message="errors"
-                  native-value="open"
+                  :native-value="true"
                   rules="required"
                 >
                   {{ $t('da') }}
@@ -153,7 +153,7 @@
                   v-model="court.airconditioner"
                   :type="valid ? 'is-success' : 'is-danger'"
                   :message="errors"
-                  native-value="closed"
+                  :native-value="false"
                   rules="required"
                 >
                   {{ $t('ne') }}
@@ -168,7 +168,7 @@
                   v-model="court.heating"
                   :type="valid ? 'is-success' : 'is-danger'"
                   :message="errors"
-                  native-value="open"
+                  :native-value="true"
                   rules="required"
                 >
                   {{ $t('da') }}
@@ -177,7 +177,7 @@
                   v-model="court.heating"
                   :type="valid ? 'is-success' : 'is-danger'"
                   :message="errors"
-                  native-value="closed"
+                  :native-value="false"
                   rules="required"
                 >
                   {{ $t('ne') }}
@@ -192,7 +192,7 @@
                   v-model="court.wifi"
                   :type="valid ? 'is-success' : 'is-danger'"
                   :message="errors"
-                  native-value="open"
+                  :native-value="true"
                   rules="required"
                 >
                   {{ $t('da') }}
@@ -201,7 +201,7 @@
                   v-model="court.wifi"
                   :type="valid ? 'is-success' : 'is-danger'"
                   :message="errors"
-                  native-value="closed"
+                  :native-value="false"
                   rules="required"
                 >
                   {{ $t('ne') }}
