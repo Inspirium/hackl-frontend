@@ -270,7 +270,7 @@ export default {
     },
     submit() {
       if (Capacitor.getPlatform() === 'web') {
-        window.location.href = `https://${this.club.subdomain}.tenis.plus`
+        window.location.href = `https://${this.club.subdomain}.inspirium.hr`
       } else {
         this.$store.commit('club/setId', this.club.id)
         this.$store.dispatch('club/init_club', { force: true })

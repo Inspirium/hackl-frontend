@@ -1252,7 +1252,7 @@ export default {
       }
     },
     selectTime(hour, part) {
-      if (hour.players[0]) {
+      if (hour.status === 'approved') {
         return
       }
       if (_.indexOf(this.reservationSpan, hour) > -1) {

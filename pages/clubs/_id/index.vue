@@ -52,7 +52,7 @@
             rounded
             @click="submit"
           >
-            {{ $t('posjeti klubsku aplikaciju') }}
+            Posjeti web stranicu mjesnog odbora
           </b-button>
         </div>
         <!-- eslint-disable-next-line -->
@@ -311,7 +311,7 @@ export default {
     },
     submit() {
       if (Capacitor.getPlatform() === 'web') {
-        window.location.href = `https://${this.club.subdomain}.tenis.plus`
+        window.location.href = `https://${this.club.subdomain}.inspirium.hr`
       } else {
         this.$store.commit('club/setId', this.club.id)
         this.$store.dispatch('club/init_club', { force: true })
