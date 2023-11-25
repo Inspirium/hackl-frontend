@@ -439,29 +439,6 @@
             </nuxt-link>
           </div>
         </div>
-        <div v-if="$store.state.club.id === 26" class="m-b-20 m-t--5">
-          <div v-show="false" class="fw600 is-size-5 has-text-centered m-b-3">{{ $t('pronađi') }}</div>
-          <div class="home-menu-middle">
-            <div class="has-background-white m-t-3 p-t-10 p-b-5">
-              <nuxt-link :to="localePath('/clubs')" type="div" class="flex align__centar__all">
-                <img src="clubs.svg" alt="" />
-                <div class="nav__menu">{{ $t('klubovi') }}</div>
-              </nuxt-link>
-            </div>
-            <div class="has-background-white m-t-3 p-t-10 p-b-5">
-              <nuxt-link :to="localePath('/trainer')" type="div" class="flex align__centar__all">
-                <b-icon class="m-b-5" pack="fal" icon="graduation-cap" type="is-black50"> </b-icon>
-                <div class="nav__menu">{{ $t('popis trenera') }}</div>
-              </nuxt-link>
-            </div>
-            <div class="has-background-white m-t-3 p-t-10 p-b-5">
-              <nuxt-link :to="localePath('/services/stringing/list')" type="div" class="flex align__centar__all">
-                <b-icon class="m-b-5" pack="fal" icon="racquet" type="is-black50"> </b-icon>
-                <div class="nav__menu">{{ $t('Špananje') }}</div>
-              </nuxt-link>
-            </div>
-          </div>
-        </div>
 
         <!--      <div class="has-text-centered fw600 m-b-5 m-t&#45;&#45;5">Natjecanja</div>-->
         <!--      <div class="home-menu-middle&#45;&#45;competition">-->
@@ -479,7 +456,7 @@
         <!--        </div>-->
         <!--      </div>-->
       </div>
-      <homeShop :key="`shop-${club.id}`" class="m-b-20" />
+      <!--<homeShop :key="`shop-${club.id}`" class="m-b-20" />-->
       <transition name="slidea">
         <div v-if="showAdmin" class="home-menu">
           <div class="activity__header m-b-10">

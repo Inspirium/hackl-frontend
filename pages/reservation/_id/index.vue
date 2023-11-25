@@ -493,11 +493,9 @@ export default {
       }
     },
     filterParsedReservation() {
-      const c = this.court
-      const filteredEntries = Object.entries(c.parsed_reservations).filter(([key, item]) => {
-        return item.id === this.term.id
+      Reservation.get(this.$route.params.id).then((res) => {
+        this.filteredList = res.data
       })
-      this.filteredList = Object.fromEntries(filteredEntries)
     },
     swipeHandler(direction) {
       if (direction === 'right') {
