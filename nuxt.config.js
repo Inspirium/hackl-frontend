@@ -88,6 +88,7 @@ export default {
     { src: '~plugins/lang', ssr: false },
     { src: '~plugins/tinymce', ssr: false },
     { src: '~plugins/user' },
+    { src: '~/plugins/vue2-google-maps', ssr: true },
     // { src: '~plugins/vue-apexcharts', ssr: false },
   ],
   /*

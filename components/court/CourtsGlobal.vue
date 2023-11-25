@@ -177,6 +177,12 @@
           {{ $t('Pretraži') }}
         </b-button>
       </div>
+
+      <!-- Google map -->
+      <div class="vue-map-container">
+        <GmapMap :center="{ lat: 10, lng: 10 }" :zoom="7" map-type-id="terrain" style="width: 500px; height: 300px" />
+      </div>
+
       <div v-if="freeCourtsTotal" class="m-t--10">
         <h6 class="fw600 flex align__centar__all">
           {{ $t('Slobodnih termina') }}:
@@ -320,6 +326,9 @@ import { dragscroll } from 'vue-dragscroll'
 import moment from 'moment'
 import Sport from '@/models/Sport'
 import _ from 'lodash'
+
+import { GmapMap } from '~/plugins/vue2-google-maps'
+
 import location from '~/components/GeoLocation'
 // import Court from '~/models/Court'
 import FreeCourt from '~/models/FreeCourt'
@@ -344,6 +353,8 @@ export default {
     modalReservation,
     modalOptions,
     courtUserPaymentModal,
+
+    GmapMap,
   },
   async fetch() {
     await this.$nextTick(() => {
@@ -410,6 +421,9 @@ export default {
       clientSecret: '',
       showStripe: false,
       selectedTerm: {},
+
+      mapCenter: { lat: 45.815, lng: 15.9819 }, // Example coordinates (Zagreb, Croatia)
+      mapZoom: 10,
     }
   },
   computed: {
@@ -571,6 +585,10 @@ export default {
     this.from = this.$moment().add(2, 'h').format('HH')
     this.to = this.$moment().add(3, 'h').format('HH')
     this.debouncedGetCity()
+
+    this.$nextTick(() => {
+      window.dispatchEvent(new Event('resize'))
+    })
   },
   methods: {
     checkIfCourtBreakAdmin(court) {
@@ -767,3 +785,11 @@ export default {
   },
 }
 </script>
+
+<!-- <style>
+.vue-map-container,
+.vue-map-container .vue-map {
+  width: 100%;
+  height: 100px;
+}
+</style> -->
