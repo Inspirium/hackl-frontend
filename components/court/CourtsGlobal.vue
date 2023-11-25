@@ -326,9 +326,6 @@ import { dragscroll } from 'vue-dragscroll'
 import moment from 'moment'
 import Sport from '@/models/Sport'
 import _ from 'lodash'
-
-import { GmapMap } from '~/plugins/vue2-google-maps'
-
 import location from '~/components/GeoLocation'
 // import Court from '~/models/Court'
 import FreeCourt from '~/models/FreeCourt'
@@ -353,8 +350,6 @@ export default {
     modalReservation,
     modalOptions,
     courtUserPaymentModal,
-
-    GmapMap,
   },
   async fetch() {
     await this.$nextTick(() => {

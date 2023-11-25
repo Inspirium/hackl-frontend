@@ -303,7 +303,7 @@ export default {
    */
   build: {
     // Add exception
-    transpile: ['vee-validate/dist/rules'],
+    transpile: ['vee-validate/dist/rules', /^vue2-google-maps($|\/)/],
     // quiet: true,
     /*
      ** You can extend webpack config here
