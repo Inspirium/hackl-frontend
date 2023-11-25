@@ -5,7 +5,7 @@
         <cloud v-if="court.weather" class="m-r-2" />
         <div class="modal-subtitle">{{ court.name }}</div>
       </div>
-      <div :class="['badge', 'badge-' + court.surface.badge, 'x-tag']">
+      <div class="badge badge-acrylic x-tag">
         {{ $t(court.surface.title) }}
       </div>
     </div>

@@ -57,7 +57,7 @@
             type="is-black30 m-r-3"
             pack="fal"
           ></b-icon
-          >{{ $t('O klubu') }}
+          >{{ $t('O gradskom odboru') }}
         </nuxt-link>
         <nuxt-link
           v-if="user"
@@ -106,7 +106,7 @@
           <div class="">
             <nuxt-link :to="localePath('/academy')">
               <img src="players.svg" alt="" />
-              <div class="nav__menu">{{ $t('korisnici') }}</div>
+              <div class="nav__menu">{{ Korisnici }}</div>
             </nuxt-link>
           </div>
           <div class="">
@@ -364,7 +364,7 @@
           <div class="">
             <nuxt-link :to="localePath('/player')">
               <img src="players.svg" alt="" />
-              <div class="nav__menu">{{ $t('igrai') }}</div>
+              <div class="nav__menu">Korisnici</div>
             </nuxt-link>
           </div>
           <div class="">
