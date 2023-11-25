@@ -1,5 +1,5 @@
 <template>
-  <div v-if="termCheck && true" v-touch:swipe="swipeHandler" class="p-b-500">
+  <div v-if="term" v-touch:swipe="swipeHandler" class="p-b-500">
     <!--    <div class="breadcrumbs breadcrumbs-back m-t-10">-->
     <!--      <a class="fw600 is-size-55 has-text-black80 align__centar__y" @click="cancel()">-->
     <!--        <b-icon icon="arrow-circle-left" pack="fal" type="is-black80" class="m-r-5"> </b-icon>-->
@@ -244,27 +244,6 @@
         @update="cancelTermSimple()"
       ></modalConfirmation>
     </b-modal>
-    <b-modal :active.sync="isAddPlayerModal" class="hidescrollbar">
-      <modalMembers
-        :title="$t('dodajIgraa')"
-        :subtitle="$t('Nakon odabira, odabrani igrač dobiti će obavijest o ovoj rezervaciji')"
-        :reservation="reservation"
-        @update="getReservation()"
-      />
-    </b-modal>
-    <b-modal :active.sync="isReservationModal" :width="640" class="hidescrollbar no-close-btn" scroll="clip">
-      <modalReservation
-        :reservations="court.parsed_reservations"
-        :court="court"
-        :reservation-date="selected_date"
-        :title="$t('rezervacija')"
-        :selected-time-pre="selected_times"
-        @close="
-          selected_times = []
-          $emit('close')
-        "
-      ></modalReservation>
-    </b-modal>
   </div>
 </template>
 
@@ -274,36 +253,17 @@ import TennisImage from '@/components/TennisImage.vue'
 import Reservation from '~/models/Reservation'
 import PageHeader from '~/components/headers/blankBack'
 import adminReservationsUser from '~/components/court/adminReservationsUser'
-import modalMembers from '~/components/modal/ModalCourtReservationAddOnly'
-import modalReservation from '~/components/modal/ModalCourtReservation'
 
 export default {
   name: 'CourtDetails',
   components: {
     PageHeader,
     TennisImage,
-    modalMembers,
     adminReservationsUser,
-    modalReservation,
-  },
-  props: {
-    term: {
-      type: Object,
-      required: false,
-      default() {
-        return {}
-      },
-    },
-    court: {
-      type: Object,
-      required: false,
-      default() {
-        return {}
-      },
-    },
   },
   data() {
     return {
+      term: null,
       activeTabPayment: 0,
       isAddPlayerModal: false,
       saveNoteLoading: false,
@@ -343,6 +303,12 @@ export default {
     }
   },
   computed: {
+    court() {
+      if (this.term) {
+        return this.term.court
+      }
+      return null
+    },
     selected_date() {
       return this.$moment(this.term.from).format('YYYY-MM-DD')
     },
@@ -494,7 +460,7 @@ export default {
     },
     filterParsedReservation() {
       Reservation.get(this.$route.params.id).then((res) => {
-        this.filteredList = res.data
+        this.term = res.data
       })
     },
     swipeHandler(direction) {
