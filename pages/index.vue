@@ -507,6 +507,7 @@
           {{ showAdmin ? $t('Sakrij administraciju') : $t('Administracija kluba') }}
         </b-button>
       </div>
+      <div></div>
       <!--<homeMyLiga :key="`myliga-${club.id}`" class="m-b--16"></homeMyLiga>
       <homeSchool :key="`school-${club.id}`" class="m-b-20"></homeSchool>
       <homeWorkorder :key="`workorder-${club.id}`" class="m-b-20"></homeWorkorder>
