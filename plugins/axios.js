@@ -6,7 +6,7 @@ export default function ({ app, $axios, redirect, store }) {
       config.headers['X-Club'] = store.state.club.id
     }
     if (process.env.NODE_ENV !== 'production') {
-      config.headers['X-Club'] = 26
+      config.headers['X-Club'] = 27
     }
     config.headers['X-Language'] = app.i18n.locale
   })

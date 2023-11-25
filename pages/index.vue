@@ -244,7 +244,7 @@
       <homeReservations :key="`reservations-${club.id}`" class="m-b--16"></homeReservations>
       <homeMessages :key="`messages-${club.id}`" class="m-t-20"></homeMessages>
       <homeNews :key="`news-${club.id}`" class=""></homeNews>
-      <!--    <homeServices class="m-b&#45;&#45;16"></homeServices>-->
+      <!--<homeServices class="m-b&#45;&#45;16"></homeServices>-->
 
       <!--<template v-if="false">
         <homeCup :key="`cup-${club.id}`" class="m-b--16"></homeCup>

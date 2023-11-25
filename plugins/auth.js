@@ -25,9 +25,9 @@ export default function ({ $auth, store, app, route, redirect }) {
     }
     if (mutation.type === 'auth/SET' || mutation.type === 'club/init_club') {
       if (!$auth.loggedIn || !$auth.user) {
-        return
+        // return
       }
-      $auth.user.is_admin = $auth.user.admin.includes(store.state.club.id)
+      // $auth.user.is_admin = $auth.user.admin.includes(store.state.club.id)
     }
   })
 }
