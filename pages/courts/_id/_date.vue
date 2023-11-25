@@ -77,7 +77,7 @@
               <b-icon v-if="!loading1" icon="chevron-left" pack="fal"></b-icon>
               <b-icon v-else icon="spinner" pack="far" custom-class="rotating"> </b-icon>
             </div>
-            <div :class="['tab__navigation__arrow__right', inactiveNext ? '' : 'inactive']" @click="nextDay">
+            <div :class="['tab__navigation__arrow__right']" @click="nextDay">
               <b-icon v-if="!loading" icon="chevron-right" pack="fal"> </b-icon>
               <b-icon v-else icon="spinner" pack="far" custom-class="rotating"> </b-icon>
             </div>
@@ -358,47 +358,7 @@
                               <div
                                 class="heading-mid is-size-55 has-text-black80 align-self-center fw500 flex flex__column line-height-11 fw600"
                               >
-                                {{ one.type !== 'guest' ? one.display_name : one.name }}
-                                <span v-if="one.ime_i_prezime_zastupnika"> ({{ one.ime_i_prezime_zastupnika }}) </span>
-
-                                <div v-if="isAdmin">
-                                  <span class="is-size-7 fw600 m-t-2">
-                                    {{ one.prebivalite_ili_sjediste }}
-                                  </span>
-
-                                  <span class="is-size-7 fw600 m-t-2">
-                                    {{ one.oib }}
-                                  </span>
-
-                                  <span class="is-size-7 fw900 m-t-2">
-                                    {{ one.email }}
-                                  </span>
-
-                                  <span class="is-size-7 fw900 m-t-2">
-                                    {{ one.mob }}
-                                  </span>
-
-                                  <span class="is-size-7 fw900 m-t-2">
-                                    {{ one.tel }}
-                                  </span>
-
-                                  <span class="is-size-7 fw600 m-t-2">
-                                    {{ one.private_description }}
-                                  </span>
-
-                                  <span class="is-size-7 fw600 m-t-2">
-                                    {{ one.datum_i_sat_prijave }}
-                                  </span>
-
-                                  <span class="is-size-7 fw600 m-t-2">
-                                    {{ one.napomena }}
-                                  </span>
-                                </div>
-
-                                <span class="is-size-7 fw600 m-t-2">
-                                  {{ one.public_description }}
-                                </span>
-
+                                {{ one.public_description }} - {{ one.applicant?.name }}
                                 <span
                                   v-if="isAdmin && (one.type === 'in_behalf' || one.type === 'guest')"
                                   class="is-size-7 has-text-black50 fw600"
