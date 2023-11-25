@@ -179,8 +179,16 @@
       </div>
 
       <!-- Google map -->
-      <div class="vue-map-container">
-        <GmapMap :center="{ lat: 10, lng: 10 }" :zoom="7" map-type-id="terrain" style="width: 500px; height: 300px" />
+      <div style="width: 100%;, height: 400px;">
+        <GmapMap :center="mapCenter" :zoom="mapZoom" map-type-id="roadmap" style="width: 100%; height: 400px">
+          <GmapMarker
+            v-for="court in freeCourts"
+            :key="court.id"
+            :position="{ lat: parseFloat(court.club.latitude), lng: parseFloat(court.club.longitude) }"
+            :clickable="true"
+            @click="logCourtName(court.club.name)"
+          />
+        </GmapMap>
       </div>
 
       <div v-if="freeCourtsTotal" class="m-t--10">
@@ -417,8 +425,8 @@ export default {
       showStripe: false,
       selectedTerm: {},
 
-      mapCenter: { lat: 45.815, lng: 15.9819 }, // Example coordinates (Zagreb, Croatia)
-      mapZoom: 10,
+      mapCenter: { lat: 45.815, lng: 15.9819 }, // coordinates for Zagreb, Croatia
+      mapZoom: 11,
     }
   },
   computed: {
@@ -772,6 +780,10 @@ export default {
     bottomVisible() {
       return window.innerHeight + window.pageYOffset + 200 >= document.body.offsetHeight
     },
+
+    logCourtName(courtName) {
+      console.log('Court clicked:', courtName)
+    },
   },
   head() {
     return {
@@ -780,11 +792,3 @@ export default {
   },
 }
 </script>
-
-<!-- <style>
-.vue-map-container,
-.vue-map-container .vue-map {
-  width: 100%;
-  height: 100px;
-}
-</style> -->
