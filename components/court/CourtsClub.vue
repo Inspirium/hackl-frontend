@@ -615,11 +615,7 @@
                                     pack="fal"
                                     rounded
                                     size="is-smaller"
-                                    @click.prevent="
-                                      selected_court = c
-                                      selectedTerm = one
-                                      activeTab = 3
-                                    "
+                                    @click.prevent="$router.push('/reservation/' + one.id)"
                                     >{{ $t('Uredi') }}
                                   </b-button>
                                 </template>

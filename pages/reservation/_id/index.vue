@@ -12,6 +12,43 @@
       :background="'is-primary'"
       @back="cancel()"
     ></PageHeader>
+    <div class="">
+      <div class="buttons m-t-40 m-b-5">
+        <b-button
+          class="m-b-10 softshadow"
+          type="is-success"
+          pack="fal"
+          icon-right="check"
+          rounded
+          :loading="loading3"
+          @click.prevent="joinClub"
+        >
+          Odobri
+        </b-button>
+        <b-button
+          class="m-b-10 softshadow"
+          type="is-danger"
+          pack="fal"
+          icon-right="times"
+          rounded
+          :loading="loading3"
+          @click.prevent="joinClub"
+        >
+          Odbij
+        </b-button>
+        <b-button
+          class="m-b-10 softshadow"
+          type="is-danger"
+          pack="fal"
+          icon-right="times"
+          rounded
+          :loading="loading3"
+          @click.prevent="isModalOdbij = true"
+        >
+          Uvjetno odbij
+        </b-button>
+      </div>
+    </div>
     <div v-if="Object.keys(reservation).length" class="x-container m-t-10">
       <div class="activity x-container m-b-20 m-t-15 p-t-10 p-b-10 statistics_new softshadow">
         <div class="flex align__centar__all">
@@ -25,14 +62,9 @@
             <div class="has-text-centered fw600 is-size-6 has-text-danger m-l-auto m-r-auto m-b--20 m-t-5 w100">
               {{ $t('Cijena rezervacije') }}
             </div>
-            <div class="has-text-centered fw600 is-size-2 m-l-auto m-r-auto m-t-10 m-b-0">
-              {{ totalPrice }}
-            </div>
+            <div class="has-text-ce ntered fw600 is-size-2 m-l-auto m-r-auto m-t-10 m-b-0">Besplatno</div>
           </template>
           <div class="divider-line-1 w100"></div>
-          <div class="has-text-centered fw600 is-size-6 has-text-black50 m-l-auto m-r-auto m-t-5 w100">
-            {{ $t('Tip rezervacije') }}: <span class="has-text-primary">{{ $t(termtype) }}</span>
-          </div>
           <template v-if="filterPlayers.length > 1 && reservation.created_by">
             <div class="divider-line-1 w100 m-t-7"></div>
             <div class="has-text-centered fw600 is-size-6 has-text-black50 m-l-auto m-r-auto m-t-5 w100">
@@ -106,28 +138,6 @@
             </div>
           </div>
         </div>
-        <div class="buttons m-t-10">
-          <b-button
-            class="softshadow m-t-10 m-b-10"
-            type="is-small noborder"
-            icon-right="plus"
-            pack="fal"
-            rounded
-            @click="isAddPlayerModal = true"
-          >
-            {{ $t('dodajIgraa') }}
-          </b-button>
-          <b-button
-            v-if="term.type !== 'guest' && term.type !== 'special' && term.type !== 'group'"
-            class="m-b-10 m-l-5 m-t-10 invert-small-button"
-            type="is-danger noborder is-small"
-            pack="fal"
-            icon-right="ban"
-            rounded
-            @click.prevent="$emit('block')"
-            >{{ $t('blokiraj') }}
-          </b-button>
-        </div>
       </div>
       <div v-if="reservation.type !== 'group'" class="">
         <b-field class="login__input__container has-text-lightblue" :label="$t('napomena')">
@@ -149,6 +159,68 @@
           </div>
         </transition>
       </div>
+      <div class="divider-line-1 m-t-40"></div>
+
+      <div class="fw600 is-size-4 has-text-black80 has-text-centered m-t-10">Podaci korisnika</div>
+      <div v-if="true" class="flex flex-aja align__centar__x">
+        <div class="m-t-10 display-data__box">
+          <div class="modal-subtitle has-text-lightblue is-size-7 is-uppercase">Ime i prezime</div>
+          <div class="fw600 is-size-55">
+            {{ reservation.applicant.name }}
+          </div>
+        </div>
+        <div class="m-t-10 display-data__box">
+          <div class="modal-subtitle has-text-lightblue is-size-7 is-uppercase">Adresa</div>
+          <div class="fw600 is-size-55">
+            {{ reservation.applicant.address }}
+          </div>
+        </div>
+        <div class="m-t-10 display-data__box">
+          <div class="modal-subtitle has-text-lightblue is-size-7 is-uppercase">
+            Ime i prezime osobe ovlaštene za zastupanje
+          </div>
+          <div class="fw600 is-size-55">
+            {{ reservation.applicant.representative }}
+          </div>
+        </div>
+        <div class="m-t-10 display-data__box">
+          <div class="modal-subtitle has-text-lightblue is-size-7 is-uppercase">OIB</div>
+          <div class="fw600 is-size-55">
+            {{ reservation.applicant.oib }}
+          </div>
+        </div>
+        <div class="m-t-10 display-data__box">
+          <div class="modal-subtitle has-text-lightblue is-size-7 is-uppercase">Telefon</div>
+          <div class="fw600 is-size-55">
+            {{ reservation.applicant.phone }}
+          </div>
+        </div>
+        <div class="m-t-10 display-data__box">
+          <div class="modal-subtitle has-text-lightblue is-size-7 is-uppercase">E-mail</div>
+          <div class="fw600 is-size-55">
+            {{ reservation.email }}
+          </div>
+        </div>
+        <div class="m-t-10 display-data__box">
+          <div class="modal-subtitle has-text-lightblue is-size-7 is-uppercase">Opis</div>
+          <div class="fw600 is-size-55">
+            {{ reservation.description }}
+          </div>
+        </div>
+        <div class="m-t-10 display-data__box">
+          <div class="modal-subtitle has-text-lightblue is-size-7 is-uppercase">Bilješka</div>
+          <div class="fw600 is-size-55">
+            {{ reservation.note }}
+          </div>
+        </div>
+        <div class="m-t-10 display-data__box">
+          <div class="modal-subtitle has-text-lightblue is-size-7 is-uppercase">Javni opis</div>
+          <div class="fw600 is-size-55">
+            {{ reservation.public_description }}
+          </div>
+        </div>
+      </div>
+
       <template v-if="reservation.type !== 'group' && Object.keys(filteredList).length">
         <div class="divider-line-1 m-t-20"></div>
         <div class="fw600 is-size-4 has-text-black80 has-text-centered m-t-5">
@@ -244,6 +316,13 @@
         @update="cancelTermSimple()"
       ></modalConfirmation>
     </b-modal>
+    <b-modal :active.sync="isModalOdbij" :width="640" class="modal__confirmation" scroll="clip">
+      <modalConfirmationBox
+        :title="$t('Uvjetno odbijanje zahtijeva')"
+        :subtitle="$t('Unesite razloge odbijanja zahtijeva')"
+        @update="cancelTermSimple()"
+      ></modalConfirmationBox>
+    </b-modal>
   </div>
 </template>
 
@@ -270,6 +349,7 @@ export default {
       isModalDeleteActive: false,
       loadingDeletePlayer: false,
       isReservationModal: false,
+      isModalOdbij: false,
       loading: false,
       loadingComplex: false,
       loadingComplex1: false,
