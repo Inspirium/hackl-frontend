@@ -211,18 +211,6 @@
                             :to="localePath('/school/' + one.players[0].id)"
                             class="court-user"
                           >
-                            <TennisImage
-                              v-if="one.players[0].image"
-                              :size="[32, 32]"
-                              class="user_image-small m-l-5 m-r-10"
-                              :src="one.players[0].image"
-                            />
-                            <TennisImage
-                              v-else
-                              :size="[32, 32]"
-                              class="user_image-small m-l-5 m-r-10"
-                              :src="club.logo"
-                            />
                             <div
                               class="heading-mid is-size-55 has-text-black80 align-self-center fw500 flex flex__column line-height-11 fw600"
                             >
@@ -262,7 +250,7 @@
                                 v-if="one.type !== 'guest'"
                                 :size="[32, 32]"
                                 class="user_image-small m-l-5 m-r-10"
-                                :src="one.players[0].image"
+                                :src="one.image"
                               />
                               <TennisImage
                                 v-else
@@ -273,19 +261,59 @@
                               <div
                                 class="heading-mid is-size-55 has-text-black80 align-self-center fw500 flex flex__column line-height-11 fw600"
                               >
-                                {{ one.type !== 'guest' ? one.players[0].display_name : one.name }}
-                                <span
-                                  v-if="isAdmin && one.type !== 'guest'"
-                                  class="is-size-7 has-text-lightblue fw600 m-t-2"
-                                  >{{
-                                    one.players[0].membership === '' ? $t('Nije član') : one.players[0].membership
-                                  }}</span
-                                >
+                                {{ one.type !== 'guest' ? one.display_name : one.name }}
+                                <span v-if="one.ime_i_prezime_zastupnika"> ({{ one.ime_i_prezime_zastupnika }}) </span>
+
+                                <div v-if="isAdmin">
+                                  <!-- TODO: odkomentiraj kada se stvore podaci u bazi -->
+                                  <span v-if="one.type !== 'guest'" class="is-size-7 has-text-lightblue fw600 m-t-2">
+                                    <!-- {{ one.category.name }} -->
+                                  </span>
+
+                                  <!-- <span v-if="one.category.name === 'Pravna osoba'"> ({{ one.mbs }}) </span> -->
+
+                                  <span class="is-size-7 fw600 m-t-2">
+                                    {{ one.prebivalite_ili_sjediste }}
+                                  </span>
+
+                                  <span class="is-size-7 fw600 m-t-2">
+                                    {{ one.oib }}
+                                  </span>
+
+                                  <span class="is-size-7 fw900 m-t-2">
+                                    {{ one.email }}
+                                  </span>
+
+                                  <span class="is-size-7 fw900 m-t-2">
+                                    {{ one.mob }}
+                                  </span>
+
+                                  <span class="is-size-7 fw900 m-t-2">
+                                    {{ one.tel }}
+                                  </span>
+
+                                  <span class="is-size-7 fw600 m-t-2">
+                                    {{ one.public_description }}
+                                  </span>
+
+                                  <span class="is-size-7 fw600 m-t-2">
+                                    {{ one.private_description }}
+                                  </span>
+
+                                  <span class="is-size-7 fw600 m-t-2">
+                                    {{ one.datum_i_sat_prijave }}
+                                  </span>
+
+                                  <span class="is-size-7 fw600 m-t-2">
+                                    {{ one.napomena }}
+                                  </span>
+                                </div>
+
                                 <span
                                   v-if="isAdmin && (one.type === 'in_behalf' || one.type === 'guest')"
                                   class="is-size-7 has-text-black50 fw600"
                                   >{{ $t('rezervacija2') }}
-                                  <span class="has-text-lightblue">{{ one.created_by.display_name }}</span></span
+                                  <span class="has-text-lightblue">{{ one.created_by.display_name }}aaa</span></span
                                 >
                               </div>
                             </router-link>
