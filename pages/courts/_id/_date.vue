@@ -265,13 +265,6 @@
                                 <span v-if="one.ime_i_prezime_zastupnika"> ({{ one.ime_i_prezime_zastupnika }}) </span>
 
                                 <div v-if="isAdmin">
-                                  <!-- TODO: odkomentiraj kada se stvore podaci u bazi -->
-                                  <span v-if="one.type !== 'guest'" class="is-size-7 has-text-lightblue fw600 m-t-2">
-                                    <!-- {{ one.category.name }} -->
-                                  </span>
-
-                                  <!-- <span v-if="one.category.name === 'Pravna osoba'"> ({{ one.mbs }}) </span> -->
-
                                   <span class="is-size-7 fw600 m-t-2">
                                     {{ one.prebivalite_ili_sjediste }}
                                   </span>
@@ -293,10 +286,6 @@
                                   </span>
 
                                   <span class="is-size-7 fw600 m-t-2">
-                                    {{ one.public_description }}
-                                  </span>
-
-                                  <span class="is-size-7 fw600 m-t-2">
                                     {{ one.private_description }}
                                   </span>
 
@@ -308,6 +297,10 @@
                                     {{ one.napomena }}
                                   </span>
                                 </div>
+
+                                <span class="is-size-7 fw600 m-t-2">
+                                  {{ one.public_description }}
+                                </span>
 
                                 <span
                                   v-if="isAdmin && (one.type === 'in_behalf' || one.type === 'guest')"
