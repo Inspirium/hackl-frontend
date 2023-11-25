@@ -65,7 +65,7 @@
               </div>
             </div>
           </div>
-          <div v-if="$store.state.club.id === 26" class="m-b-20" @click="isMenuModalActive = false">
+          <div v-if="$store.state.club.id === 26 && user" class="m-b-20" @click="isMenuModalActive = false">
             <div class="fw600 has-text-white is-size-65 m-b-3">
               {{ Object.keys(user.club_member).length > 1 ? $t('Tvoji klubovi') : $t('Tvoj klub') }}
             </div>

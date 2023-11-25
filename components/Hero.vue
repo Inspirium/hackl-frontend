@@ -114,7 +114,7 @@ export default {
       return this.$store.state.club
     },
     isAdmin() {
-      return this.$store.state.auth.user.is_admin
+      return this.$store.state.auth.loggedIn && this.$store.state.auth.user.is_admin
     },
     pageImage() {
       if (this.page) {

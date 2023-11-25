@@ -256,7 +256,7 @@ export default {
     plugins: ['~/plugins/auth.js'],
     cookie: {
       options: {
-        domain: '.tenis.plus',
+        domain: '.inspirium.hr',
         expires: 365,
       },
     },

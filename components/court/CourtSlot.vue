@@ -56,7 +56,7 @@ export default {
   },
   computed: {
     isAdmin() {
-      return this.$store.state.auth.user.is_admin
+      return this.$auth.loggedIn && this.$store.state.auth.user.is_admin
     },
     club() {
       return this.$store.state.club

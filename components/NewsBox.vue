@@ -11,7 +11,7 @@
       </div>
     </nuxt-link>
     <div :class="[options.author.image ? '' : 'noimage', 'classified__list']">
-      <div v-if="$auth.user.id !== options.author.id" class="align__centar__y">
+      <div v-if="$auth.user && $auth.user.id !== options.author.id" class="align__centar__y">
         <TennisImage :size="[42, 42]" class="user_image m-r-10" :src="options.author.image" alt="" />
         <div :class="[options.image ? '' : 'noimagename has-text-white', 'player__name has-text-white']">
           {{ options.author.display_name ? options.author.display_name : $store.state.club.name }}
@@ -33,7 +33,7 @@
           </b-button>
         </div>
       </div>
-      <div v-if="$auth.user.id !== options.author.id" class="classified__date m-l-20">
+      <div v-if="$auth.user && $auth.user.id !== options.author.id" class="classified__date m-l-20">
         {{ options.created_at | moment('DD.MM.YYYY') }}
       </div>
     </div>

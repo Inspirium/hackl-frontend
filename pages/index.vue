@@ -12,7 +12,7 @@
       </hero>
     </div>
     <div v-if="isApprovedMemeber"></div>
-    <birthday class="" />
+    <!--<birthday class="" />-->
     <admin-rain-indicator />
     <div v-if="!isMemberOfTheClub" class="notify cursor" @click.prevent="joinClub">
       <div class="notification-info is-primary">
@@ -60,6 +60,7 @@
           >{{ $t('O klubu') }}
         </nuxt-link>
         <nuxt-link
+          v-if="user"
           :to="localePath('/player/' + user.id)"
           type="div"
           class="h100 cursor fw600 is-size-65 p-all-12 flex flex align__centar__all"
@@ -74,7 +75,7 @@
           >{{ $t('Moj profil') }}
         </nuxt-link>
         <nuxt-link
-          v-if="club.payment_accontation && Object.keys(filterUsersClubWallet).length"
+          v-if="user && club.payment_accontation && Object.keys(filterUsersClubWallet).length"
           :to="localePath('/player/' + user.id + '/payments')"
           type="div"
           class="h100 cursor fw600 is-size-65 p-all-12 flex flex align__centar__all"
@@ -317,6 +318,7 @@
           >{{ $t('O klubu') }}
         </nuxt-link>
         <nuxt-link
+          v-if="user"
           :to="localePath('/player/' + user.id)"
           type="div"
           class="h100 cursor fw600 is-size-65 p-all-12 flex flex align__centar__all"
@@ -331,7 +333,7 @@
           >{{ $t('Moj profil') }}
         </nuxt-link>
         <nuxt-link
-          v-if="club.payment_accontation && club.payment_online && filterUsersClubWallet"
+          v-if="user && club.payment_accontation && club.payment_online && filterUsersClubWallet"
           :to="localePath('/player/' + user.id + '/payments')"
           type="div"
           class="h100 cursor fw600 is-size-65 p-all-12 flex flex align__centar__all"
@@ -505,19 +507,19 @@
           {{ showAdmin ? $t('Sakrij administraciju') : $t('Administracija kluba') }}
         </b-button>
       </div>
-      <homeMyLiga :key="`myliga-${club.id}`" class="m-b--16"></homeMyLiga>
+      <!--<homeMyLiga :key="`myliga-${club.id}`" class="m-b--16"></homeMyLiga>
       <homeSchool :key="`school-${club.id}`" class="m-b-20"></homeSchool>
       <homeWorkorder :key="`workorder-${club.id}`" class="m-b-20"></homeWorkorder>
       <homeOrder :key="`order-${club.id}`" class="m-b-20"></homeOrder>
       <homeReservations :key="`reservations-${club.id}`" class="m-b--16"></homeReservations>
-      <homeMessages :key="`messages-${club.id}`" class="m-t-20"></homeMessages>
+      <homeMessages :key="`messages-${club.id}`" class="m-t-20"></homeMessages>-->
       <homeNews :key="`news-${club.id}`" class=""></homeNews>
       <!--    <homeServices class="m-b&#45;&#45;16"></homeServices>-->
 
       <!--<template v-if="false">
         <homeCup :key="`cup-${club.id}`" class="m-b--16"></homeCup>
       </template>-->
-      <homeClassified :key="`classified-${club.id}`" class="m-b--16"></homeClassified>
+      <!--<homeClassified :key="`classified-${club.id}`" class="m-b--16"></homeClassified>
       <homeSponsors class="m-t-15" />
       <homeRankings
         v-if="club.type === 'classic' && club.hide_ranks"
@@ -525,7 +527,7 @@
         class="m-b--16"
       ></homeRankings>
       <homeResults :key="`results-${club.id}`" class="m-b--16"></homeResults>
-      <homeSchedule :key="`schedule-${club.id}`" class="m-b--16"></homeSchedule>
+      <homeSchedule :key="`schedule-${club.id}`" class="m-b--16"></homeSchedule>-->
       <!--<homeCups v-if="false" :key="`cups-${club.id}`"></homeCups>-->
       <!--    <template v-if="$store.state.club.id !== 26">-->
       <!--      <b-modal :active.sync="isModalNotif" :width="640" scroll="clip" class="modal-notif">-->
@@ -683,13 +685,13 @@ export default {
       return this.$store.state.auth.user
     },
     isAdmin() {
-      return this.user.is_admin
+      return this.user && this.user.is_admin
     },
     club() {
       return this.$store.state.club
     },
     isMemberOfTheClub() {
-      return !!this.user.club_member[this.club.id]
+      return this.user && !!this.user.club_member[this.club.id]
     },
     isCashier() {
       if (!this.user.club_member || !this.user.club_member[this.club.id.toString()]) return false
@@ -710,6 +712,10 @@ export default {
   },
   methods: {
     isModalNotifFunc() {
+      if (!this.user) {
+        this.isModalNotif = false
+        return
+      }
       if (this.user.hidden_notifications === null) {
         this.isModalNotif = true
       }

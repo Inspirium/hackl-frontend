@@ -1,7 +1,7 @@
 <template>
   <div :class="selectedLanguageStyle">
     <topnav />
-    <home-sport-picker v-if="user.id === 2" />
+    <!-- <home-sport-picker v-if="user.id === 2" /> -->
     <nuxt v-if="(isMember || !validateUser) && !isBlocked" />
     <template>
       <div :class="isScrolled ? 'totop' : 'totop_init'" class="totop transition" @click="scrollToTop">
