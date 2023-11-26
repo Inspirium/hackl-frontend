@@ -12,7 +12,7 @@
           <div v-for="(item, index) in reservations" :key="index + 'ob'" class="">
             <nuxt-link
               v-if="item.created_by"
-              :to="localePath('/reservation/' + item.created_by.id)"
+              :to="localePath('/reservation/' + item.id)"
               class="fw600 align__centar__all p-r-10 p-l-10 p-t-7 p-b-7 bb1-10"
             >
               <div v-if="item.created_by.image" class="list__img">
