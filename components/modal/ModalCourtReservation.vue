@@ -34,7 +34,6 @@
                 type="is-danger"
               />
               <span v-if="hours.price" class="price">{{ hoursPrice(hours.price) + ' €' }}</span>
-              <span v-else class="price">{{ $t('rezervirano') }}</span>
             </div>
           </div>
         </div>
@@ -63,10 +62,10 @@
                 : '' | parseTimeMin
             }}</span>
           </div>
-          <div class="fw600 is-size-5 has-text-lightblue mt-5">
+          <div v-if="isAdmin" class="fw600 is-size-5 has-text-lightblue mt-5">
             {{ $t('Rezervacijske opcije') }}
           </div>
-          <div class="buttons m-t-10 buttons_reservation">
+          <div v-if="isAdmin" class="buttons m-t-10 buttons_reservation">
             <b-button
               v-if="
                 !listTypeSchool && !guestReservation && !is_doubles && isAdmin && !specialReservation && !showPartners
@@ -94,28 +93,6 @@
               @click="guestReservation = !guestReservation"
             >
               {{ $t('naImeGosta') }}
-            </b-button>
-            <b-button
-              v-if="
-                user.is_trainer &&
-                !forSomeoneElse &&
-                !guestReservation &&
-                !is_doubles &&
-                !specialReservation &&
-                !showPartners
-              "
-              type="is-small noborder"
-              icon-left="graduation-cap"
-              :icon-right="listTypeSchool ? 'times' : ''"
-              :class="{ active: listTypeSchool }"
-              pack="far"
-              rounded
-              @click="
-                listTypeSchool ? getPlayers() : getGroups()
-                listTypeSchool = !listTypeSchool
-              "
-            >
-              {{ $t('zaKoluTenisa') }}
             </b-button>
             <b-button
               v-if="isAdmin && !forSomeoneElse && !guestReservation && !is_doubles && !listTypeSchool && !showPartners"
@@ -152,19 +129,6 @@
               @click="showPartners = !showPartners"
             >
               {{ $t('Dodaj partnera na rezervaciju') }}
-            </b-button>
-
-            <b-button
-              v-if="!listTypeSchool && !guestReservation && !forSomeoneElse && !specialReservation && !showPartners"
-              type="is-small noborder"
-              pack="far"
-              icon-left="user-group"
-              :icon-right="is_doubles ? 'times' : ''"
-              :class="[{ active: is_doubles }]"
-              rounded
-              @click="getDoubles()"
-            >
-              {{ $t('zaParove') }}
             </b-button>
           </div>
           <div

@@ -1,8 +1,7 @@
 <template>
   <div>
-    <hero :page="'clubs'" :options="heroImage">
-      <h1 class="has-text-white">{{ $t('popisKlubova') }}</h1>
-    </hero>
+    <PageHeader :title="$t('Popis mjesnih odbora')" />
+
     <location class="" @location="setLocation" @update="noLocation()" />
     <div class="x-container registration relative">
       <div class="tablelist">
@@ -94,13 +93,13 @@
 import TennisImage from '@/components/TennisImage.vue'
 import Club from '@/models/Club'
 import _ from 'lodash'
-import hero from '~/components/Hero'
+import PageHeader from '~/components/headers/blankBack'
 import location from '~/components/GeoLocation'
 
 export default {
   name: 'Clubs',
   components: {
-    hero,
+    PageHeader,
     TennisImage,
     location,
   },

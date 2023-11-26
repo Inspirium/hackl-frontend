@@ -1,13 +1,7 @@
 <template>
   <div v-if="isAdmin">
-    <hero
-      :second="{
-        name: $t('Tereni'),
-        link: '/courts',
-      }"
-    >
-      <h1 class="has-text-white">{{ $t('upravljanjeTerenima') }}</h1>
-    </hero>
+    <PageHeader :title="$t('Upravljanje prostorijama')" />
+
     <div class="x-container activity">
       <div class="buttons">
         <b-button
@@ -19,7 +13,7 @@
           tag="nuxt-link"
           :to="localePath('/admin/courts/new')"
         >
-          {{ $t('dodajNoviTeren') }}
+          {{ $t('Dodaj novu prostoriju') }}
         </b-button>
       </div>
       <draggable v-model="courts" handle=".drag__item" group="people" @end="reorder">
@@ -77,13 +71,13 @@ import _ from 'lodash'
 import draggable from 'vuedraggable'
 import WorkingHours from '@/models/WorkingHours'
 import Court from '~/models/Court'
-import hero from '~/components/Hero'
+import PageHeader from '~/components/headers/blankBack'
 import courtSlot from '~/components/court/CourtSlot'
 
 export default {
   name: 'AdminCourts',
   components: {
-    hero,
+    PageHeader,
     courtSlot,
     draggable,
   },

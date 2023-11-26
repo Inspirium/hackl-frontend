@@ -392,16 +392,28 @@
               <div class="nav__menu">Prostori</div>
             </nuxt-link>
           </div>
-          <div class="">
+          <div v-if="isAdmin" class="">
             <nuxt-link :to="localePath('/player')">
               <img src="players.svg" alt="" />
               <div class="nav__menu">Korisnici</div>
             </nuxt-link>
           </div>
-          <div class="">
+          <div v-else class="">
+            <nuxt-link :to="localePath('/player/' + user.id)">
+              <img src="players.svg" alt="" />
+              <div class="nav__menu">Moj profil</div>
+            </nuxt-link>
+          </div>
+          <div v-if="isAdmin" class="">
             <nuxt-link :to="localePath('/schedule')">
               <img src="results.svg" alt="" />
               <div class="nav__menu">Zaprimljene prijave</div>
+            </nuxt-link>
+          </div>
+          <div v-else class="">
+            <nuxt-link :to="localePath('/player/' + user.id + '/reservation')">
+              <img src="results.svg" alt="" />
+              <div class="nav__menu">Moje prijave</div>
             </nuxt-link>
           </div>
         </div>
@@ -523,9 +535,9 @@
       <homeSchool :key="`school-${club.id}`" class="m-b-20"></homeSchool>
       <homeWorkorder :key="`workorder-${club.id}`" class="m-b-20"></homeWorkorder>
       <homeOrder :key="`order-${club.id}`" class="m-b-20"></homeOrder>
-      <homeReservations :key="`reservations-${club.id}`" class="m-b--16"></homeReservations>
       <homeMessages :key="`messages-${club.id}`" class="m-t-20"></homeMessages>-->
-      <homeNews :key="`news-${club.id}`" class=""></homeNews>
+      <homeReservations :key="`reservations-${club.id}`" class="m-b--16"></homeReservations>
+      <homeNews :key="`news-${club.id}`" class="m-t-20"></homeNews>
       <!--    <homeServices class="m-b&#45;&#45;16"></homeServices>-->
 
       <!--<template v-if="false">

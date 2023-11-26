@@ -1,7 +1,7 @@
 <template>
   <div class="members">
     <hero :page="'player'">
-      <h1 class="has-text-white">{{ $t('popisIgraa2') }}</h1>
+      <h1 class="has-text-white">Popis korisnika</h1>
     </hero>
     <div class="filters container">
       <!--      <div class="filter">-->
@@ -12,20 +12,12 @@
       <!--          </b-button>-->
       <!--        </div>-->
       <!--      </div>-->
-      <div class="filter">
-        <div class="label m-t-0">{{ $t('dobIgraa') }}</div>
-        <div class="buttons">
-          <b-button type="is-primary" pack="far" icon-right="chevron-down" @click="isModalAgeActive = true">
-            {{ $t(filterAgeDisplay) }}
-          </b-button>
-        </div>
-      </div>
     </div>
     <div id="inputsearch" class="search container">
       <b-field>
         <b-input
           v-model="search_term"
-          :placeholder="$t('pretraiIgrae')"
+          :placeholder="$t('pretraži korisnike')"
           type="search"
           pack="far"
           class="search-icon-right"
@@ -38,7 +30,7 @@
     </div>
     <div v-if="$store.state.club.id !== 26" class="total__members">
       <h6 class="fw600 flex align__centar__all">
-        {{ $t('ukupnoLanova') }}
+        {{ $t('Ukupno korisnika') }}
         <span>{{ total }}</span>
       </h6>
     </div>
@@ -52,7 +44,7 @@
         tag="nuxt-link"
         :to="localePath('/player/new')"
       >
-        {{ $t('registrirajNovogIgraa') }}
+        {{ $t('Registriraj korisnika') }}
       </b-button>
     </div>
 

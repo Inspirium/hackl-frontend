@@ -1,17 +1,9 @@
 <template>
   <div class="cups">
-    <hero
-      :options="heroImage"
-      :back="true"
-      :second="{
-        name: $t('Uredi terene'),
-        link: '/admin/courts',
-      }"
-    >
-      <h1 class="has-text-white">{{ court.name ? court.name : $t('Novi teren') }}</h1>
-    </hero>
+    <PageHeader :title="$t('Nova prostorija')" />
+
     <div class="activity x-container">
-      <div class="tab__navigation m-b-20 m-t--40">
+      <div class="tab__navigation m-b-20 m-t-0">
         <div :class="['tab__navigation__arrow__left', activeTab === 0 ? 'inactive' : '']" @click="activeTab--">
           <b-icon icon="chevron-left" pack="fal"> </b-icon>
         </div>
@@ -33,7 +25,7 @@
               v-model="court.name"
               wrap="hard"
               custom-class="input__title"
-              :placeholder="$t('upiiNazivTerena')"
+              :placeholder="$t('Upiši naziv prostorije')"
             ></b-input>
           </b-field>
           <template v-if="court.name">
@@ -528,7 +520,7 @@
 import _ from 'lodash'
 import WorkingHours from '@/models/WorkingHours'
 import Sport from '@/models/Sport'
-import hero from '~/components/Hero'
+import PageHeader from '~/components/headers/blankBack'
 import photoUpload from '~/components/photoUpload'
 import indicator from '~/components/Indicator'
 import Court from '~/models/Court'
@@ -537,7 +529,7 @@ import modalSelect from '~/components/modal/ModalSelectCourtCopyData'
 export default {
   name: 'NewCourt',
   components: {
-    hero,
+    PageHeader,
     photoUpload,
     modalSelect,
     indicator,
