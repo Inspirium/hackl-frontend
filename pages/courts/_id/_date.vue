@@ -130,6 +130,12 @@
             <div class="fw600 is-size-3 m-t--30 m-b-0 has-text-centered">{{ $t('Galerija') }}</div>
           </div>
 
+          <!--<VueSlickCarousel :dots="true" :arrows="true" style="display: block; max-height: 300px">
+            <div v-for="i in 4" :key="i">
+              <img :src="`https://api.inspirium.hr/storage/court/court${i}.jpg`" class="court__image" />
+            </div>
+          </VueSlickCarousel>-->
+
           <div class="align__centar__x m-t-30">
             <div class="fw600 is-size-3 m-t--30 m-b-0 has-text-centered">{{ $t('Podaci o prostoru') }}</div>
           </div>
@@ -191,14 +197,14 @@
                   {{ court.invalid ? $t('Da') : $t('Ne') }}
                 </div>
               </div>
-              <div class="m-t-10 display-data__box">
+              <!--<div class="m-t-10 display-data__box">
                 <div class="modal-subtitle has-text-lightblue is-size-7 is-uppercase">
                   {{ $t('Tip prostora') }}
                 </div>
                 <div class="fw600 is-size-55">
                   {{ court.type }}
                 </div>
-              </div>
+              </div>-->
               <div class="m-t-10 display-data__box">
                 <div class="modal-subtitle has-text-lightblue is-size-7 is-uppercase">
                   {{ $t('otkazivanjeRezervacije') }}
@@ -747,6 +753,8 @@
   </div>
 </template>
 <script>
+import 'vue-slick-carousel/dist/vue-slick-carousel.css'
+import 'vue-slick-carousel/dist/vue-slick-carousel-theme.css'
 import moment from 'moment'
 import TennisImage from '@/components/TennisImage.vue'
 import _ from 'lodash'

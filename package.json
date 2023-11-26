@@ -77,6 +77,7 @@
     "vue-chat-scroll": "github:mbanusic/vue-chat-scroll",
     "vue-deepset": "^0.6.3",
     "vue-dragscroll": "3.0.1",
+    "vue-slick-carousel": "^1.0.6",
     "vue-template-compiler": "^2.7.14",
     "vue2-google-maps": "^0.10.7",
     "vue2-touch-events": "^2.3.2",

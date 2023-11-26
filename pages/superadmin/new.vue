@@ -4,12 +4,12 @@
       <div class="content has-text-white has-text-centered m-t-20">
         <b-icon icon="cog" size="is-large" pack="fal"> </b-icon>
       </div>
-      <h1 class="has-text-white">{{ $t('noviKlub') }}</h1>
+      <h1 class="has-text-white">Novi mjesni odbor</h1>
     </div>
     <div class="x-container registration">
       <div class="form-grobup align__centar__y flex__column">
         <form class="w100" @submit.prevent="submit">
-          <ValidationProvider v-slot="{ errors, valid }" name="Naziv kluba" rules="required">
+          <ValidationProvider v-slot="{ errors, valid }" name="Naziv mjesnog odbora" rules="required">
             <b-field
               :label="$t('nazivKluba')"
               size="is-medium"
@@ -17,7 +17,7 @@
               :type="valid ? 'is-success' : 'is-danger'"
               :message="errors"
             >
-              <b-input v-model="clubNew.name" :placeholder="$t('upiiNazivKluba')" type="text" rounded> </b-input>
+              <b-input v-model="clubNew.name" placeholder="Upiši naziv" type="text" rounded> </b-input>
             </b-field>
           </ValidationProvider>
           <ValidationProvider v-slot="{ errors, valid }" name="Poddomena" rules="required">
@@ -28,27 +28,11 @@
               :type="valid ? 'is-success' : 'is-danger'"
               :message="errors"
             >
-              <b-input v-model="clubNew.subdomain" :placeholder="$t('upiiNazivKluba')" type="text" rounded> </b-input>
-            </b-field>
-          </ValidationProvider>
-          <div class="label">{{ $t('Država') }}</div>
-          <ValidationProvider name="Država" rules="required">
-            <b-field class="">
-              <b-autocomplete
-                v-model="country"
-                rounded
-                field="name"
-                :data="countries"
-                :placeholder="$t('Odaberi državu')"
-                clearable
-                @select="(option) => (selected = option)"
-              >
-                <template #empty>{{ $t('Nema rezultata pretrage') }}</template>
-              </b-autocomplete>
+              <b-input v-model="clubNew.subdomain" placeholder="Upišite poddomenu" type="text" rounded> </b-input>
             </b-field>
           </ValidationProvider>
 
-          <div class="label">{{ $t('owner') }}</div>
+          <div class="label">Admin</div>
           <div class="activity__box action__buttons br100 m-b-20">
             <div class="action__item__small fw600 br100">
               <div v-if="Object.keys(clubNew.owner).length" class="align__centar__all w100">
@@ -64,7 +48,7 @@
               <div v-else class="activity__header" @click="isModalMembersActive = true">
                 <b-icon icon="plus-circle" type="is-green" pack="fal" class="m-r-10"> </b-icon>
                 <div class="list__content">
-                  <div class="has-text-black50 fw600 is-size-6">{{ $t('dodajVlasnika') }}</div>
+                  <div class="has-text-black50 fw600 is-size-6">Dodaj admina</div>
                 </div>
               </div>
             </div>
