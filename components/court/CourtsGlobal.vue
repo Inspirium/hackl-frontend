@@ -207,7 +207,7 @@
             :key="court.id"
             :position="{ lat: parseFloat(court.club.latitude), lng: parseFloat(court.club.longitude) }"
             :clickable="true"
-            @click="logCourtName(court.id)"
+            @click="logCourtName(court)"
           />
         </GmapMap>
       </div>
@@ -706,6 +706,7 @@ export default {
         latitude: 0,
         longitude: 0,
       }
+      /*
       if (this.location.latitude) {
         params.latitude = this.location.latitude
         params.longitude = this.location.longitude
@@ -715,7 +716,8 @@ export default {
         params.latitude = this.selected.latitude
         params.longitude = this.selected.longitude
         fc.orderBy('distance')
-      }
+      } */
+      fc.orderBy('club')
       fc.params(params)
       fc.get()
         .then((res) => {
@@ -815,7 +817,13 @@ export default {
     },
 
     logCourtName(court) {
-      this.$router.push('/courts/' + court + '/' + moment(this.selected_date).format('YYYY-MM-DD'))
+      window.location.href =
+        'https://' +
+        court.club.subdomain +
+        '.inspirium.hr/courts/' +
+        court.id +
+        '/' +
+        moment(this.selected_date).format('YYYY-MM-DD')
     },
   },
   head() {
