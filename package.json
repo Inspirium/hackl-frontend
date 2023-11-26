@@ -94,7 +94,7 @@
     "@nuxtjs/laravel-echo": "^1.1.0",
     "@nuxtjs/pwa": "^3.3.5",
     "babel-eslint": "^10.1.0",
-    "cypress": "^10.11.0",
+    "cypress": "^13.6.0",
     "dotenv": "^8.6.0",
     "eslint": "^7.32.0",
     "eslint-config-prettier": "^6.15.0",
