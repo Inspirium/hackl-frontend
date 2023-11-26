@@ -126,9 +126,6 @@
               <court-slot :court="court" />
             </div>
           </div>
-          <div class="align__centar__x m-t-30">
-            <div class="fw600 is-size-3 m-t--30 m-b-0 has-text-centered">{{ $t('Galerija') }}</div>
-          </div>
 
           <!--<VueSlickCarousel :dots="true" :arrows="true" style="display: block; max-height: 300px">
             <div v-for="i in 4" :key="i">
