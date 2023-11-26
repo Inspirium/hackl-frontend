@@ -535,9 +535,9 @@
       <homeSchool :key="`school-${club.id}`" class="m-b-20"></homeSchool>
       <homeWorkorder :key="`workorder-${club.id}`" class="m-b-20"></homeWorkorder>
       <homeOrder :key="`order-${club.id}`" class="m-b-20"></homeOrder>
-      <homeReservations :key="`reservations-${club.id}`" class="m-b--16"></homeReservations>
       <homeMessages :key="`messages-${club.id}`" class="m-t-20"></homeMessages>-->
-      <homeNews :key="`news-${club.id}`" class=""></homeNews>
+      <homeReservations :key="`reservations-${club.id}`" class="m-b--16"></homeReservations>
+      <homeNews :key="`news-${club.id}`" class="m-t-20"></homeNews>
       <!--    <homeServices class="m-b&#45;&#45;16"></homeServices>-->
 
       <!--<template v-if="false">
