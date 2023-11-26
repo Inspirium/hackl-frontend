@@ -392,16 +392,28 @@
               <div class="nav__menu">Prostori</div>
             </nuxt-link>
           </div>
-          <div class="">
+          <div v-if="isAdmin" class="">
             <nuxt-link :to="localePath('/player')">
               <img src="players.svg" alt="" />
               <div class="nav__menu">Korisnici</div>
             </nuxt-link>
           </div>
-          <div class="">
+          <div v-else class="">
+            <nuxt-link :to="localePath('/player/' + user.id)">
+              <img src="players.svg" alt="" />
+              <div class="nav__menu">Moj profil</div>
+            </nuxt-link>
+          </div>
+          <div v-if="isAdmin" class="">
             <nuxt-link :to="localePath('/schedule')">
               <img src="results.svg" alt="" />
               <div class="nav__menu">Zaprimljene prijave</div>
+            </nuxt-link>
+          </div>
+          <div v-else class="">
+            <nuxt-link :to="localePath('/player/' + user.id + '/reservation')">
+              <img src="results.svg" alt="" />
+              <div class="nav__menu">Moje prijave</div>
             </nuxt-link>
           </div>
         </div>

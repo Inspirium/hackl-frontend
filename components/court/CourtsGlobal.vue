@@ -243,7 +243,7 @@
                       <div class="fw600 is-size-12 has-text-black80">{{ court.club.name }}</div>
                       <div class="fw600 is-size-7 m-t--2 has-text-black50 flex align__centar__y">
                         <font-awesome-icon class="m-r-2 has-text-lightblue iw08" icon="fa-light fa-location-dot" />
-                        {{ court.club.city }}
+                        {{ court.club.county }}
                         <template v-if="court.reservation_prepayment">
                           <font-awesome-icon
                             class="m-r-4 m-l-10 has-text-lightblue iw08"

@@ -351,6 +351,7 @@
             <!--            </b-radio>-->
             <!--          </div>-->
             <!--        </ValidationProvider>-->
+            <p v-if="false">{{ invalid }}</p>
             <div v-if="touched > 1 && crop_image === null" class="buttons is-fixed">
               <b-button
                 class="fw600"
@@ -364,7 +365,6 @@
                 {{ $t('odustani') }}
               </b-button>
               <b-button
-                :class="[invalid ? 'inactive' : '']"
                 class="m-l-5 fw600"
                 type="is-primary"
                 pack="fal"

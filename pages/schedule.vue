@@ -40,18 +40,15 @@
                   <!--                    size="is-small-10 top-5"-->
                   <!--                    class="relative has-text-black30"-->
                   <!--                  ></b-icon>-->
-                  <span class="has-text-black30">{{ $t('Vrijeme otkazivanja') }}:</span
+                  <span class="has-text-black30">{{ $t('Vrijeme slanja zahtjeva') }}:</span
                   ><span class="m-l-4 has-text-danger"
-                    >{{ item.deleted_at | moment('DD.MM.' + ', ' + 'HH:mm') }}h
+                    >{{ item.created_at | moment('DD.MM.' + ', ' + 'HH:mm') }}h
                   </span>
                 </div>
                 <div class="fw600 is-size-65 has-text-black30 m-r-5">
                   {{ $t('Rezervacija') }}:<span class="has-text-black80">
                     {{ item.from | moment('DD.MM.' + ', ' + 'HH:mm') }} - {{ item.to | moment('HH:mm') }}h</span
                   ><span v-if="$store.state.auth.user.id === 1">{{ item.id }}</span>
-                </div>
-                <div class="fw600 is-size-65 has-text-black30 m-r-5">
-                  {{ $t('Otkazao') }}:<span class="has-text-black80"> {{ item.canceled_by?.display_name }}</span>
                 </div>
               </div>
             </nuxt-link>
