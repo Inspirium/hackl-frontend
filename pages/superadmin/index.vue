@@ -4,7 +4,7 @@
       <div class="content has-text-white has-text-centered m-t-20">
         <b-icon icon="cog" size="is-large" pack="fal"> </b-icon>
       </div>
-      <h1 class="has-text-white">{{ $t('upravljanjeKlubovima') }}</h1>
+      <h1 class="has-text-white">Upravljanje Mjesnim odborima</h1>
     </div>
     <div class="x-container registration">
       <div class="tablelist">
@@ -18,10 +18,10 @@
             tag="nuxt-link"
             :to="localePath('/superadmin/new')"
           >
-            {{ $t('noviKlub') }}
+            Dodaj novi mjesni odbor
           </b-button>
         </div>
-        <div class="fw600 is-size-55 m-l-5 m-t-10 m-b-10">{{ $t('popisKlubova') }}</div>
+        <div class="fw600 is-size-55 m-l-5 m-t-10 m-b-10">Popis mjesnih odbora</div>
         <b-table :data="clubs" :mobile-cards="false" :bordered="false" class="p-b-75">
           <b-table-column
             v-slot="props"
@@ -35,7 +35,7 @@
                 <h4 class="fw600 is-size-5 m-t--2">
                   {{ props.row.name }}
                 </h4>
-                <h3 class="fw600 has-text-lightblue is-size-65">{{ props.row.subdomain }}.tenis.plus</h3>
+                <h3 class="fw600 has-text-lightblue is-size-65">{{ props.row.subdomain }}.inspirium.hr</h3>
               </div>
             </nuxt-link>
           </b-table-column>
