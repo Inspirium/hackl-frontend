@@ -53,7 +53,7 @@
                     </h3>
                     <h3 class="fw600 has-text-lightblue is-size-65 flex align__centar__y">
                       <font-awesome-icon class="m-r-3 has-text-lightblue iw08" icon="fa-light fa-arrow-pointer" />
-                      <span class="has-text-black50">{{ props.row.domain }}</span>
+                      <span class="has-text-black50">{{ props.row.subdomain }}.inspirium.hr</span>
                     </h3>
                     <h3 class="fw600 has-text-lightblue is-size-65 flex align__centar__y">
                       <font-awesome-icon
