@@ -65,7 +65,7 @@
     "promise-map-limit": "^1.0.0",
     "pusher-js": "^7.6.0",
     "qs-stringify": "^1.1.0",
-    "serve": "^6.4.9",
+    "serve": "^14.2.1",
     "sheetify": "^7.1.0",
     "tinymce": "^6.4.2",
     "tinymce-i18n": "^23.5.8",
